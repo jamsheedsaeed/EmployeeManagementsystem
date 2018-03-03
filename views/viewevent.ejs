@@ -425,7 +425,7 @@ function populateTable(){
         console.log('Unable to put data');
 
        
-                $.getJSON("http://localhost:3000/viewevent", function(data){
+                $.getJSON("http://employeemanagementsystem.herokuapp.com/viewevent", function(data){
                     console.log(data);
   
                     $.each(data, function(i, field){
