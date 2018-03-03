@@ -4,12 +4,19 @@
 <head>
 <meta charset="UTF-8">
 <title>view employee</title>
+
+<link href="/stylesheet/view.css" rel="stylesheet">
 <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular-route.min.js"></script>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
 <!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>-->
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="script.js"></script>
+
 </head>
 <body>
   
@@ -17,59 +24,7 @@
   
   
 <div>
-    <style>
-        body {margin:0;}
-        
-        .topnav {
-          overflow: hidden;
-          background-color: #333;
-        
-        }
-        
-        .topnav a {
-          float: left;
-          display: block;
-          color: #f2f2f2;
-          text-align: center;
-          padding: 14px 16px;
-          text-decoration: none;
-          font-size: 17px;
-        }
-        
-        .topnav a:hover {
-          background-color: #0B4CC5;
-          color: black;
-        }
-        
-        .active {
-          background-color: #4C98AF;
-          color: white;
-        }
-        
-        .topnav .icon {
-          display: none;
-        }
-        
-        @media screen and (max-width: 600px) {
-          .topnav a:not(:first-child) {display: none;}
-          .topnav a.icon {
-            float: right;
-            display: block;
-          }
-        }
-        
-        @media screen and (max-width: 600px) {
-          .topnav.responsive {position: relative;}
-          .topnav.responsive .icon {
-            position: absolute;
-            right: 0;
-            top: 0;
-          }
-          
-        
-        }
-        </style>
-        
+   
   <div  ><img src="images/ems1.png"  height="100px" width="200px" margin=0px> </div>
    
     <nav class="topnav" id="myTopnav"  role="navigation"  style="padding-left:130px;background-color:rgb(105, 25, 125)">
@@ -92,215 +47,6 @@
 
 </html>
 
-
-<style>
-
-.responstable {
-  margin: 1em 0;
-  width: 100%;
-  overflow: hidden;
-  background: #FFF;
-  color: #024457;
-  border-radius: 10px;
-  border: 1px solid #167F92;
-}
-.responstable tr {
-  border: 1px solid #D9E4E6;
-}
-.responstable tr:nth-child(odd) {
-  background-color: #EAF3F3;
-}
-.responstable th {
-  display: none;
-  border: 1px solid #FFF;
-  background-color: #167F92;
-  color: #FFF;
-  padding: 1em;
-}
-.responstable th:first-child {
-  display: table-cell;
-  text-align: center;
-}
-.responstable th:nth-child(2) {
-  display: table-cell;
-}
-.responstable th:nth-child(2) span {
-  display: none;
-}
-.responstable th:nth-child(2):after {
-  content: attr(data-th);
-}
-@media (min-width: 480px) {
-  .responstable th:nth-child(2) span {
-    display: block;
-  }
-  .responstable th:nth-child(2):after {
-    display: none;
-  }
-}
-.responstable td {
-  display: block;
-  word-wrap: break-word;
-  max-width: 7em;
-}
-.responstable td:first-child {
-  display: table-cell;
-  text-align: center;
-  border-right: 1px solid #D9E4E6;
-}
-@media (min-width: 480px) {
-  .responstable td {
-    border: 1px solid #D9E4E6;
-  }
-}
-.responstable th, .responstable td {
-  text-align: left;
-  margin: .5em 1em;
-}
-@media (min-width: 480px) {
-  .responstable th, .responstable td {
-    display: table-cell;
-    padding: 1em;
-  }
-}
-
-body {
-  padding: 0 2em;
-  font-family: Arial, sans-serif;
-  color: #024457;
-  background: #f2f2f2;
-}
-
-h1 {
-  font-family: Verdana;
-  font-weight: normal;
-  color: #024457;
-}
-h1 span {
-  color: #167F92;
-}
-@import "compass/css3";
-
-
-
-// Default options for table style
-$table-breakpoint: 480px;
-$table-background-color: #FFF;
-$table-text-color: #024457;
-$table-outer-border: 1px solid #167F92;
-$table-cell-border: 1px solid #D9E4E6;
-
-// Extra options for table style (parse these arguments when including your mixin)
-$table-border-radius: 10px;
-$table-highlight-color: #EAF3F3;
-$table-header-background-color: #167F92;
-$table-header-text-color: #FFF;
-$table-header-border: 1px solid #FFF;
-
-// The Responstable mixin
-
-@mixin responstable(
-  $breakpoint: $table-breakpoint,
-  $background-color: $table-background-color,
-  $text-color: $table-text-color,
-  $outer-border: $table-outer-border,
-  $cell-border: $table-cell-border,
-  $border-radius: none,
-  $highlight-color: none,
-  $header-background-color: $table-background-color,
-  $header-text-color: $table-text-color,
-  $header-border: $table-cell-border) {
-  
-  .responstable {
-    margin: 1em 0;
-    width: 100%;
-    overflow: hidden;  
-    background: $background-color;
-    color: $text-color;
-    border-radius: $border-radius;
-    border: $outer-border;
-  
-    tr {
-      border: $cell-border; 
-      &:nth-child(odd) { // highlight the odd rows with a color
-        background-color: $highlight-color;
-      }  
-    }
-  
-    th {
-      display: none; // hide all the table header for mobile
-      border: $header-border;
-      background-color: $header-background-color;
-      color: $header-text-color;
-      padding: 1em;  
-      &:first-child { // show the first table header for mobile
-        display: table-cell;
-        text-align: center;
-      }
-      &:nth-child(2) { // show the second table header but replace the content with the data-th from the markup for mobile
-        display: table-cell;
-        span {display:none;}
-        &:after {content:attr(data-th);}
-      }
-      @media (min-width: $breakpoint) {
-        &:nth-child(2) { // hide the data-th and show the normal header for tablet and desktop
-          span {display: block;}
-          &:after {display: none;}
-        }
-      }
-    }
-  
-    td {
-      display: block; // display the table data as one block for mobile
-      word-wrap: break-word;
-      max-width: 7em;
-      &:first-child { 
-        display: table-cell; // display the first one as a table cell (radio button) for mobile
-        text-align: center;
-        border-right: $cell-border;
-      }
-      @media (min-width: $breakpoint) {
-        border: $cell-border;
-      }
-    }
-  
-    th, td {
-      text-align: left;
-      margin: .5em 1em;  
-      @media (min-width: $breakpoint) {
-        display: table-cell; // show the table as a normal table for tablet and desktop
-        padding: 1em;
-      }
-    }  
-    
-  }    
-}
-
-// Include the mixin (with extra options as overrides)
-
-@include responstable(
-  $border-radius: $table-border-radius,
-  $highlight-color: $table-highlight-color,
-  $header-background-color: $table-header-background-color,
-  $header-text-color: $table-header-text-color,
-  $header-border: $table-header-border);
-
-// General styles
-
-body {
-  padding: 0 2em;
-  font-family: Arial, sans-serif;
-  color: #024457;
-  background: #f2f2f2;
-}
-
-h1 {
-  font-family: Verdana;
-  font-weight: normal;
-  color: #024457;
-  span {color: #167F92;}
-}
-</style>
 <div class="container" style="margin-top:35px;">
   <h4>Select Records to Show:</h4>
   <div class="form-group">
@@ -318,8 +64,13 @@ h1 {
   <nav>
     <ul class="pagination"></ul>
   </nav>
+
 </div>
   </div>
+
+
+
+
 <script>
 var table = '#emptable'
 $('#maxRows').on('change', function(){
@@ -366,15 +117,9 @@ var id = 0;
   $(this).prepend('<td>'+id+'</td>')
   })
 })
-    
-</script>
-<html>
-    <title>View Employee Details</title>
-    <body>
-      <!-- <center><h1>Employees Record</h1></center> -->
-      <input type="text" name="search" id="search" class="form-control" placeholder="Search By Name" />  
-      <script>  
-        $(document).ready(function(){  
+
+
+$(document).ready(function(){  
              $('#search').keyup(function(){  
                   search_table($(this).val());  
              });  
@@ -397,10 +142,19 @@ var id = 0;
                        }  
                   });  
              }  
-        });  
-   </script>
+        });
+
+      
+</script>
+<html>
+    <title>View Employee Details</title>
+    <body>
+      <!-- <center><h1>Employees Record</h1></center> -->
+  <input type="text" name="search" id="search" class="form-control" placeholder="Search By Name" />  
+    
 <table id="emptable" class="responstable" style="width:100%; margin-left:10px; margin-right:50px;" >
-    <tr >
+ 
+    <tr  >
     <th  width="5%" name="empname" id="empname">Employee Name</th>
     <th width="5%" name="empemail" id="empemail">Email</th>
     <th width="5%" name="empphone" id="empphone">Phone</th>
@@ -411,36 +165,35 @@ var id = 0;
     <th width="5%">Action Delete</th>
     <th width="5%">Action Update</th>
 
-</tr>
-        </table>
+  </tr>
+
+
+
+ </table>
         
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+       
      
     <script>
       
-populateTable();
+      populateTable();
 function populateTable(){
-        var mydata;
+       var mydata;
         var userdata;
       $(document).ready(function(){
-        console.log('Unable to put data');
+        console.log('Unable to put data'); 
 
        
-                $.getJSON("http://localhost:3000/employee", function(data){
+                $.getJSON("http://employeemanagementsystem.herokuapp.com/employee", function(data){
                     console.log(data);
-  
-                    $.each(data, function(i, field){
+           
+                  $.each(data, function(i, field){
                    
                        $('#emptable').append('<tr  ><td>'+field.employeename+'</td><td>'+field.Email+
-                        '</td><td>'+field.phone+'</td><td>'+field.address+'</td><td>'+field.department+'</td><td>'+field.dob+'</td><td>'+field.salary+'</td><td><a href="#" id="btn1" class="deleteEmployee btn btn-danger "   rel="' + this._id + '" >delete</a></td><td> <a href=""  class="btn btn-warning" data-toggle="modal" data-target="#myModal" contenteditable="false" ><span class="glyphicon glyphicon-edit"></span>Update</a></td></tr>' 
+                        '</td><td>'+field.phone+'</td><td>'+field.address+'</td><td>'+field.department+'</td><td>'+field.dob+'</td><td>'+field.salary+'</td><td><a href="#" id="btn1" class="deleteEmployee btn btn-danger "   rel="' + this._id + '" >delete</a></td><td> <a href=""  class="btn btn-warning" data-toggle="modal" data-target="#myModal" contenteditable="false"  ><span class="glyphicon glyphicon-edit"></span>Update</a></td></tr>' 
             
                     );
 
-                   
-                    
-                       
+               
                         });
                      
         
@@ -450,12 +203,6 @@ function populateTable(){
                
             });
           }
-          function Change() {
-			var txt = parseInt(document.getElementById("txt").value)
-			alert(txt);
-			var tr = document.getElementById("tbl").getElementsByTagName("tr")
-			tr[txt].getElementsByTagName("td")[0].innerHTML = "change me"
-		}
   
 $('#emptable tbody').on('click', 'td a.deleteEmployee', function deleteEmployee(event){
 
@@ -500,14 +247,9 @@ $('#emptable tbody').on('click', 'td a.deleteEmployee', function deleteEmployee(
     }
 })
 
-
-
-            </script>
+ </script>
             
-
-      
-            </script>
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
             aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -552,6 +294,10 @@ $('#emptable tbody').on('click', 'td a.deleteEmployee', function deleteEmployee(
                 </div>
             </div>
               
+
+
+
+
               <script>
                 // sandbox disable popups
                 if (window.self !== window.top && window.name!="view1") {;
