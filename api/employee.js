@@ -85,6 +85,31 @@ exports.getAll = function (req, res) {
         }
     });
  }
+
+
+ exports.edit=function(req,res){
+    if(req.params.id==undefined){
+      res.status(404).send({
+        message:'one or more perameters missing'
+      });
+    }else{
+     Employee.findOne({_id:req.params.id}).exec(function(error,Employee){
+      //  console.log(Employee);
+      Employee.username=req.body.username?req.body.username:Events.title;
+      Employee.subtitle=req.body.subtitle?req.body.subtitle:Events.subtitle;
+      Employee.description=req.body.description?req.body.description:Events.description;
+      Employee.imageurl=req.body.imageurl?req.body.imageurl:Events.imageurl;
+      Employee.date=req.body.date?req.body.date:Events.date;      
+      Employee.save(function(error,Employee){
+          if(error){
+            res.status('500').send({message:'error found'})
+          }else{
+            res.status('202').send({message:'updated'})
+          }
+        });
+      })
+   }
+  }
  
 /*
  exports.delete = function(req, res) {

@@ -52,8 +52,8 @@ module.exports = function(app) {
   app.get('/', function (req, res) {
     res.render('index');
     });
-    app.get('/update', function (req, res) {
-      res.render('update');
+    app.get('/news', function (req, res) {
+      res.render('news');
       });
     app.get('/secret',  function (req, res) {
     res.render('secret');
@@ -137,6 +137,18 @@ module.exports = function(app) {
     app.get('/viewevent', events.getAll);
     app.delete('/eventdelete/:id', events.delete);
     
+ //---------------------------Defining Routes For News-----------------------------------------------
+ var News = require('../api/news.js');
+ app.post('/addnews', News.addnews);
+ app.get('/viewnews', News.getAll);
+ app.delete('/deletenews/:id', News.delete);
+
+  
+ //---------------------------Defining Routes For Leave-----------------------------------------------
+ var leave = require('../api/leave.js');
+ app.post('/applyleave',leave.leaveadd );
+
+   
     
    
     app.use("*",function(req,res){

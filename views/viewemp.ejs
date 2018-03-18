@@ -12,9 +12,15 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>>
 <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
 <!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>-->
-
+<!--
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <!--<script src="script.js"></script>-->
 
@@ -25,7 +31,7 @@
   
   
 <div>
-   
+
   <div  ><img src="images/ems1.png"  height="100px" width="200px" margin=0px> </div>
    
     <nav class="topnav" id="myTopnav"  role="navigation"  style="padding-left:130px;background-color:rgb(105, 25, 125)">
@@ -33,7 +39,7 @@
       <li class="active"><a href="/secret">Home<span class="sr-only">(current)</span></a></li>
      <li><a href="/about">About<span ></span></a></li>
       <li><a href="/register">Register</a></li>
-      <li><a href="">Update Employee</a></li>
+      <li><a href="/news">News</a></li>
       <li><a href="/viewemp">view</a></li>
       <li><a href="/event">View Events</a></li>
       <li><a href="/events">Events</a></li>
@@ -155,7 +161,7 @@ $(document).ready(function(){
     
 <table id="emptable" class="responstable" style="width:100%; margin-left:10px; margin-right:50px;" >
  
-    <tr  >
+    <tr  id = "rowid" >
     <th  width="5%" name="empname" id="empname">Employee Name</th>
     <th width="5%" name="empemail" id="empemail">Email</th>
     <th width="5%" name="empphone" id="empphone">Phone</th>
@@ -172,7 +178,58 @@ $(document).ready(function(){
 
  </table>
         
-       
+ <div id="dataModal" class="modal fade">  
+  <div class="modal-dialog">  
+       <div class="modal-content">  
+            <div class="modal-header">  
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>  
+                 <h4 class="modal-title">Employee Details</h4>  
+            </div>  
+            <div class="modal-body" id="employee_detail">  
+            </div>  
+            <div class="modal-footer">  
+                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
+            </div>  
+       </div>  
+  </div>  
+</div>  
+<div id="add_data_Modal" class="modal fade">  
+  <div class="modal-dialog">  
+       <div class="modal-content">  
+            <div class="modal-header">  
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>  
+                 <h4 class="modal-title">Employee Detail</h4>  
+            </div>  
+            <div class="modal-body">  
+                 <form method="post" id="insert_form">  
+                      <label>Enter Employee Name</label>  
+                      <input type="text" name="name" id="name" class="form-control" />  
+                      <br />  
+                      <label>Enter Employee Address</label>  
+                      <textarea name="address" id="address" class="form-control"></textarea>  
+                      <br />  
+                      <label>Select Gender</label>  
+                      <select name="gender" id="gender" class="form-control">  
+                           <option value="Male">Male</option>  
+                           <option value="Female">Female</option>  
+                      </select>  
+                      <br />  
+                      <label>Enter Designation</label>  
+                      <input type="text" name="designation" id="designation" class="form-control" />  
+                      <br />  
+                      <label>Enter Age</label>  
+                      <input type="text" name="age" id="age" class="form-control" />  
+                      <br />  
+                      <input type="hidden" name="employee_id" id="employee_id" />  
+                      <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" />  
+                 </form>  
+            </div>  
+            <div class="modal-footer">  
+                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
+            </div>  
+       </div>  
+  </div>  
+</div>  
      
     <script>
       
@@ -184,13 +241,13 @@ function populateTable(){
         console.log('Unable to put data'); 
 
        
-                $.getJSON("https://employeemanagementsystem.herokuapp.com/employee", function(data){
-                    //console.log(data);
+                $.getJSON("http://localhost:3000/employee", function(data){
+                    console.log(data);
            
                   $.each(data, function(i, field){
                    
                        $('#emptable').append('<tr  ><td>'+field.employeename+'</td><td>'+field.Email+
-                        '</td><td>'+field.phone+'</td><td>'+field.address+'</td><td>'+field.department+'</td><td>'+field.dob+'</td><td>'+field.salary+'</td><td><a href="#" id="btn1" class="deleteEmployee btn btn-danger "   rel="' + this._id + '" >delete</a></td><td> <a href=""  class="btn btn-warning" data-toggle="modal" data-target="#myModal" contenteditable="false"  ><span class="glyphicon glyphicon-edit"></span>Update</a></td></tr>' 
+                        '</td><td>'+field.phone+'</td><td>'+field.address+'</td><td>'+field.department+'</td><td>'+field.dob+'</td><td>'+field.salary+'</td><td><a href="#" id="btn1" class="deleteEmployee btn btn-danger "   rel="' + this._id + '" >delete</a></td> <td><input type="button" name="edit" value="Edit" rel="' + this._id + '" class="btn btn-info edit_data" /></td> </tr>' 
             
                     );
 
@@ -248,143 +305,136 @@ $('#emptable tbody').on('click', 'td a.deleteEmployee', function deleteEmployee(
     }
 })
 
+
  </script>
-            
-       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
-            aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                
-                    </div>
-                </div>
-                <div class="modal-dialog">
-                    <div class="modal-content"></div>
-                </div>
-               
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal"> <span aria-hidden="true" class="">×   </span><span class="sr-only">Close</span>
-            
-                            </button>
-                             <h4 class="modal-title" id="myModalLabel">Modal title</h4>
-                             <label id="columnHeader" >Employee Name</label>
-                             <input type="text" name="mytitle" class="field-style field-split align-left" placeholder="Employeename" size="75" />
-                             <br><br>
-                             <input type="text" name="mytitle" class="field-style field-split align-left" placeholder="Email" size="75"  />
-                             <br><br>
-                             <input type="text" name="mytitle" class="field-style field-split align-left" placeholder="Phone" size="75" />
-                             <br><br>
-                             <input type="text" name="mytitle" class="field-style field-split align-left" placeholder="Address" size="75" />
-                             <br><br>
-                             <input type="text" name="mytitle" class="field-style field-split align-left" placeholder="Department" size="75"  />
-                             <br><br>
-                             <input type="text" name="mytitle" class="field-style field-split align-left" placeholder="Birth Date" size="75"  />
-                             <br><br>
-                             <input type="text" name="mytitle" class="field-style field-split align-left" placeholder="Salary" size="75" />
 
+  <script>  
+var trEdit = null;
+$(document).on('click', '.edit_data', function(){  
+  var table,tr,td,username;
+  trEdit = $(this).closest('tr');
+  var type = $(this).closest('tr').children('td.username').text();
+  var empemail = $(trEdit).find('ed:eq(1)').text;
+  $.getJSON("http://localhost:3000/employee", function(data){
+    $.each(data, function(i, field){
 
+      if(field._id == 'rel'){
+      
+     username = field.employeename;
+     alert("username:"+username);
+      }
 
-                        </div>
-                        <div class="modal-body"></div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-              
+    });
+
+  });
+  
+
+});
 
 
 
 
-              <script>
-                // sandbox disable popups
-                if (window.self !== window.top && window.name!="view1") {;
-                  window.alert = function(){/*disable alert*/};
-                  window.confirm = function(){/*disable confirm*/};
-                  window.prompt = function(){/*disable prompt*/};
-                  window.open = function(){/*disable open*/};
-                }
-                
-                // prevent href=# click jump
-                document.addEventListener("DOMContentLoaded", function() {
-                  var links = document.getElementsByTagName("A");
-                  for(var i=0; i < links.length; i++) {
-                    if(links[i].href.indexOf('#')!=-1) {
-                      links[i].addEventListener("click", function(e) {
-                      console.debug("prevent href=# click");
-                          if (this.hash) {
-                            if (this.hash=="#") {
-                              e.preventDefault();
-                              return false;
-                            }
-                            else {
-                              /*
-                              var el = document.getElementById(this.hash.replace(/#/, ""));
-                              if (el) {
-                                el.scrollIntoView(true);
-                              }
-                              */
-                            }
-                          }
-                          return false;
-                      })
-                    }
-                  }
-                }, false);
-              </script>
-              
-              <!--scripts loaded here-->
-              
-              <script src="//ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-              <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-              
-              
-              
-              <script>
-              $(".btn[data-target='#myModal']").click(function() {
-                   var columnHeadings = $("thead th").map(function() {
-                             return $(this).text();
-                          }).get();
-                   columnHeadings.pop();
-                   var columnValues = $(this).parent().siblings().map(function() {
-                             return $(this).text();
-                   }).get();
-              var modalBody = $('<div id="modalContent"></div>');
-              var modalForm = $('<form role="form" name="modalForm" action="putYourPHPActionHere.php" method="post"></form>');
-              $.each(columnHeadings, function(i, columnHeader) {
-                   var formGroup = $('<div class="form-group"></div>');
-                   formGroup.append('<label for="'+columnHeader+'">'+columnHeader+'</label>');
-                   formGroup.append('<input class="form-control" empname="'+columnHeader+i+'" id="'+columnHeader+i+'" value="'+columnValues[i]+'" />'); 
-                   modalForm.append(formGroup);
-              });
-              modalBody.append(modalForm);
-              $('.modal-body').html(modalBody);
-            });
-            $('.modal-footer .btn-primary').click(function() {
-               $('form[name="modalForm"]').submit();
-            });
+ /* $(document).ready(function(){  
+          $('#add').click(function(){  
+              $('#insert').val("Insert");  
+              $('#insert_form')[0].reset();  
+          });  
+          $(document).on('click', '.edit_data', function(){  
 
+         
+              var employee_id = $(this).attr("rel");  
+              $.ajax({  
+                    url:'http://localhost:3000/employee' , 
+                   
+                    type:"POST",  
+                    data   : function(data){  
+                      console.log("edit function is called");
+                        ('#name').val(data.name);  
+                        ('#address').val(data.address);  
+                       // ('#gender').val(data.gender);  
+                    },
+                   // data:{employee_id:employee_id},  
+                    
+                    success:function(data){  
+                      console.log("edit function is called");
+                        ('#name').val(data.name);  
+                        ('#address').val(data.address);  
+                        ('#gender').val(data.gender);  
+                        ('#designation').val(data.designation);  
+                        ('#age').val(data.age);  
+                        ('#employee_id').val(data.id);  
+                        ('#insert').val("Update");  
+                       
+                        ('#add_data_Modal').modal('show');  
+                    },error:function(data){
+                      // $('#name').val(data.username);  
+                      //   $('#address').val(data.address); 
+                      //   $('#employee_id').val(data._id);
+                      //$('#add_data_Modal').modal('show');  
+                         
+                      // var getIdFromRow = $(event.target).closest('tr').data('id');
+                      // $(this).find('#add_data_Modal').html($('<b> Order Id selected: ' + getIdFromRow  + '</b>'));
+                      // $('#name').val(data.getIdFromRow);  
+                      $('#add_data_Modal').modal('show');  
 
-
-            function showRow(row,url)
-          {
-          var x=row.cells;
-          document.getElementById("empname").value = x[1].innerHTML;
-          document.getElementById("empemail").value = x[2].innerHTML;
-          document.getElementById("empphone").value = x[3].innerHTML;
-          document.getElementById("empadd").value = x[4].innerHTML;
-          document.getElementById("empdept").value = x[5].innerHTML;
-          document.getElementById("empbir").value = x[6].innerHTML;
-          document.getElementById("empsal").value = x[7].innerHTML;
-            modal.style.display = "block";
-          }
-
-
-              </script>
-            
+                    }  
+              });  
+          });  
+          $('#insert_form').on("submit", function(event){  
+              event.preventDefault();  
+              if($('#name').val() == "")  
+              {  
+                    alert("Name is required");  
+              }  
+              else if($('#address').val() == '')  
+              {  
+                    alert("Address is required");  
+              }  
+              else if($('#designation').val() == '')  
+              {  
+                    alert("Designation is required");  
+              }  
+              else if($('#age').val() == '')  
+              {  
+                    alert("Age is required");  
+              }  
+              else  
+              {  
+                    $.ajax({  
+                        url:"insert.php",  
+                        method:"POST",  
+                        data:$('#insert_form').serialize(),  
+                        beforeSend:function(){  
+                              $('#insert').val("Inserting");  
+                        },  
+                        success:function(data){  
+                              $('#insert_form')[0].reset();  
+                              $('#add_data_Modal').modal('hide');  
+                              $('#employee_table').html(data);  
+                        }  
+                    });  
+              }  
+          });  
+          $(document).on('click', '.view_data', function(){  
+              var employee_id = $(this).attr("id");  
+              if(employee_id != '')  
+              {  
+                    $.ajax({  
+                        url:"select.php",  
+                        method:"POST",  
+                        data:{employee_id:employee_id},  
+                        success:function(data){  
+                              $('#employee_detail').html(data);  
+                              $('#dataModal').modal('show');  
+                        },error:function(data){
+                          $('#employee_detail').html(data);  
+                              $('#dataModal').modal('show');  
+                        } 
+                    });  
+              }            
+          });  
+    });  */
+  </script>
 
 
     </body>
