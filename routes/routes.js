@@ -146,7 +146,7 @@ module.exports = function(app) {
   
  //---------------------------Defining Routes For Leave-----------------------------------------------
  var leave = require('../api/leave.js');
- app.post('/applyleave' );
+ app.post('/applyleave',leave.leaveadd );
 
    
     
