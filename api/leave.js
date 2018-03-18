@@ -7,7 +7,7 @@ var app = exprss();
 
 exports.leaveadd=function(req,res){
   let newleave = new leave({
-    Leave: req.body.leave
+    
 });
 newleave.save((err, leave)=>{
     if(err){
