@@ -1,6 +1,4 @@
 var mongoose = require('mongoose');
-
-
 var leaveSchema = new mongoose.Schema({
     Leave:String
 });

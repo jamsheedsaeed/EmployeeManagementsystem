@@ -1,7 +1,10 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <meta http-equiv="Content-Security-Policy" content="block-all-mixed-content" />
+
 <meta charset="UTF-8">
 <title>view employee</title>
 
@@ -12,29 +15,68 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>>
 <!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
 <!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>-->
-<!--
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
 
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
 
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+
+
+
 <!--<script src="script.js"></script>-->
 
 </head>
-<body>
-  
-<div>
-  
-  
-<div>
 
+<body>
+
+<div>
+    
+<div>
+    <div  ><img src="images/ems.jpg"  height="80px" width="500px" margin=0px>
+      <img src="images/empall.jpg"  height="80px" width="500px" align="right">
+    </div>
+    <div class="nav">
+				<ul>
+            <li class="active"><a href="/secret">Home<span class="sr-only">(current)</span></a></li>
+             <li><a href="/register">Register</a></li>
+             <li><a href="/news">News</a></li>
+             <li><a href="/events">Events</a></li>
+             <li><a href="/events">Notifications</a></li>
+             
+					<li class="Logout" style="float:right"><a href="/">Logout</a></li>
+					<div class="dropdown">
+                    <button class="dropbtn">Data View 
+                    <i class="fa fa-caret-down"></i>
+                    </button>
+                                    <div class="dropdown-content">
+							<a href="/viewemp">Employees Data</a>
+							<a class="active" href="/page/viewstransport">News Data</a>
+							<a href="/page/viewsdining">Events Data</a>
+							<a href="/page/viewnews">Leaves Details</a>
+							<a href="/page/viewnews">Notifications Details</a>
+	                       
+
+						</div>
+					</div>
+
+
+				</ul>
+
+      </div>
+      <div class="knockout">Employees Record</div>
+  
+<!--
   <div  ><img src="images/ems1.png"  height="100px" width="200px" margin=0px> </div>
    
-    <nav class="topnav" id="myTopnav"  role="navigation"  style="padding-left:130px;background-color:rgb(105, 25, 125)">
+    <nav class="topnav" id="myTopnav"  role="navigation"  style=" padding-left:235px;background-color:rgb(105, 25, 125)">
        <ul class="nav navbar-nav">
       <li class="active"><a href="/secret">Home<span class="sr-only">(current)</span></a></li>
      <li><a href="/about">About<span ></span></a></li>
@@ -44,17 +86,28 @@
       <li><a href="/event">View Events</a></li>
       <li><a href="/events">Events</a></li>
       <li><a href="">Leaves details</a></li>
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/"><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
-      </ul>
+
+      <li class="dropdown show">
+  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Dropdown link
+  </a>
+
+  <ui class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+    <a class="dropdown-item" href="#">Action</a>
+    <a class="dropdown-item" href="#">Another action</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+  </ui>
+</li>
+     
     </ul>
 </nav>
 </div>
+-->
 <br/>
 
 </html>
-
-<div class="container" style="margin-top:35px;">
+<!--
+<div class="container" style="margin-left:14%; margin-top:35px;">
   <h4>Select Records to Show:</h4>
   <div class="form-group">
     <select name="state" id="maxRows" class="form-control" style="width: 150px;">
@@ -74,7 +127,7 @@
 
 </div>
   </div>
-
+-->
 
 
 
@@ -153,13 +206,21 @@ $(document).ready(function(){
 
       
 </script>
-<html>
+
     <title>View Employee Details</title>
     <body>
       <!-- <center><h1>Employees Record</h1></center> -->
-  <input type="text" name="search" id="search" class="form-control" placeholder="Search By Name" />  
+  
+      <div class="wrap">
+          <div class="search">
+             <input type="text" id="myInput" onkeyup="myFunction()" class="searchTerm" placeholder="What are you looking for?">
+             <button type="submit" class="searchButton">
+               <i class="fa fa-search"></i>
+            </button>
+          </div>
+       </div> 
     
-<table id="emptable" class="responstable" style="width:100%; margin-left:10px; margin-right:50px;" >
+<table id="emptable" class="responstable" style="width:100%;  margin-right:50px;" >
  
     <tr  id = "rowid" >
     <th  width="5%" name="empname" id="empname">Employee Name</th>
@@ -168,7 +229,7 @@ $(document).ready(function(){
     <th width="5%" name="empadd" id="empadd">Address</th>
     <th width="5%" name="empdept" id="empdept">Department</th>
     <th width="5%" name="empbir" id="empbir">Birth Date</th>
-    <th width="5%" name="empsal" id="empsal">Salary</th>
+    <th width="5%" name="empsal" id="empsal">Action View</th>
     <th width="5%">Action Delete</th>
     <th width="5%">Action Update</th>
 
@@ -247,7 +308,7 @@ function populateTable(){
                   $.each(data, function(i, field){
                    
                        $('#emptable').append('<tr  ><td>'+field.employeename+'</td><td>'+field.Email+
-                        '</td><td>'+field.phone+'</td><td>'+field.address+'</td><td>'+field.department+'</td><td>'+field.dob+'</td><td>'+field.salary+'</td><td><a href="#" id="btn1" class="deleteEmployee btn btn-danger "   rel="' + this._id + '" >delete</a></td> <td><input type="button" name="edit" value="Edit" rel="' + this._id + '" class="btn btn-info edit_data" /></td> </tr>' 
+                        '</td><td>'+field.phone+'</td><td>'+field.address+'</td><td>'+field.department+'</td><td>'+field.dob+'</td><td><input type="button" title="test" onclick="generateReport();" value="Get PDF Report"/> </td><td><a href="#" id="btn1" class="deleteEmployee btn btn-danger "   rel="' + this._id + '" >delete</a></td> <td><input type="button" name="edit" value="Edit" rel="' + this._id + '" class="btn btn-info edit_data" /></td> </tr>' 
             
                     );
 
@@ -261,6 +322,19 @@ function populateTable(){
                
             });
           }
+
+          function generateReport() {  
+            
+var request = {  
+        template: {  
+              name: 'Employee.ejs'  
+             },   
+                   data: "http://localhost:3000/employee"
+                  
+        };  
+jsreport.render($("#employees"), request);   
+// here ”placeholder” is div tag name in html page  
+}  
   
 $('#emptable tbody').on('click', 'td a.deleteEmployee', function deleteEmployee(event){
 
@@ -307,6 +381,27 @@ $('#emptable tbody').on('click', 'td a.deleteEmployee', function deleteEmployee(
 
 
  </script>
+<script>
+    function myFunction() {
+      var input, filter, table, tr, td, i;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("emptable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }       
+      }
+    }
+    </script>
+
+
 
   <script>  
 var trEdit = null;
@@ -433,7 +528,7 @@ $(document).on('click', '.edit_data', function(){
                     });  
               }            
           });  
-    });  */
+    }); 
   </script>
 
 
