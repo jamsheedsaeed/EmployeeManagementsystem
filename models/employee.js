@@ -30,16 +30,23 @@ var EmployeeSchema = new mongoose.Schema({
    fname:String,
    Email:String,
    phone:String,
+   gender:String,
    dob:String,
    address:String,
-   username:String,
-   Password:String,
+   title:String,
    department:String,
    startdate:String,
    salary:String,
+   payscale:String,
+   username:String,
+   Password:String,
+   
    EmgFullName:String,
    Relationship:String,
    EPhone:Number
+
+
+   
 });
 EmployeeSchema.plugin(passportLocalMongoose);
 module.exports = mongoose.model("employee", EmployeeSchema);

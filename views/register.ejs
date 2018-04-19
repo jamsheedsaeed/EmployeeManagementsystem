@@ -12,16 +12,27 @@
     </head>
     <style>
     body {
-      background-image: url("images/regback.jpg ");
+      background-image: url("images/newback.jpg ");
 } 
-
+#container {
+      display: flex;                  /* establish flex container */
+      flex-direction: row;            /* default value; can be omitted */
+      flex-wrap: nowrap;              /* default value; can be omitted */
+      justify-content: space-between; /* switched from default (flex-start, see below) */
+      background-color: #d80c0cf6;
+    }
+    #container > div {
+      width: 150%;
+      height: 130%;
+      border:dotted rgba(3, 27, 27, 0.959);
+    }
 
 </style>
      
       
       <div>
             <div>
-                    <div  ><img src="images/ems.jpg"  height="80px" width="500px" margin=0px>
+                    <div  ><img src="images/ems.jpg"  height="14%" width="20%" margin=0px>
                       <img src="images/empall.jpg"  height="80px" width="500px" align="right">
                     </div>
                     <div class="nav">
@@ -40,7 +51,7 @@
                 
                       </div>
   
-   
+   <!--
     <form action="/empregister" method="POST"  >
         <center>
      <h1 style="color:rgb(207, 13, 13);">Personal Details</h1></center>
@@ -199,12 +210,253 @@
         <br><br><br><br>
         <center>
             <input type="image" src="images/regbtn.jpg" alt="Submit" width="250" height="150">
-           <!-- <input type="submit" value="Register" />-->
-      </form>
-      
-        <script>
-        </script>
+        
+      </form>-->
+
+      <form action="/empregister" method="POST"  >
+<center>
+        <span  style="color:rgb(105, 25, 125);size:20%"><font size="6">Registration Form</font></span>
+    </center>
+    <div id="container">
+           
+    
+    
+    
+          <div>
+              
+            <div  >
+            <img src="images/perdet.png" height="15%" alt="Personal Detail" margin=0px><span  style="color:rgba(58, 13, 7, 0.726);size:20%"><font size="4">Personal Details</font></span></div>
+            <div class="form-row">
+                <div class="form-group col-md-10 mb-2 ">
+                    <label for="validationServer01">Employee Name</label>
+                    <div class="input-group">
+                     <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-user"></span> 
+                     </div>
+                     <input type="text" name="field1" class="form-control is-valid" id="validationServer01" placeholder="Enter name" required>
+                    </div>
+                   </div>
+    <br><br><br><br>
+                   <div class="col-md-10 ">
+                      <label for="validationServer02">Father name</label>
+                      <div class="input-group">
+                          <div class="input-group-addon">
+                         <span class="glyphicon glyphicon-user"></span> 
+                          </div>
+                      <input type="text" name="field2" class="form-control is-valid" id="validationServer02" placeholder="Enter name"  required>
+                    </div>
+                  </div>
+    <br><br><br><br>
+                  <div class="form-group col-md-10 mb-2">
+                      <label class="validationServerUsername control-label" for="email">
+                        Email
+                      </label>
+                      <div class="input-group">
+                          <div class="input-group-addon">
+                         <span class="glyphicon glyphicon-envelope"></span> 
+                          </div>
+                        <input type="email" name="field3" class="form-control is-invalid" id="validationServerUsername" placeholder="Email" aria-describedby="inputGroupPrepend3" required>
+                      </div>
+                    </div>
+       <br><br><br><br>     
+    
+       <div class="form-row">
+          <div class="col-md-10">
+            <label for="validationServer03">Phone#</label>
+            <div class="input-group">
+                <div class="input-group-addon">
+               <span class="glyphicon glyphicon-earphone"></span> 
+                </div>
+            <input type="number" name="field4" class="form-control is-invalid" id="validationServer03" placeholder="03324583421" required>
+          </div>
+          </div>
+    
+          </div>
             </div>
+            <br><br><br><br>
+                   <div class="col-md-10 ">
+                      <label for="validationServer02">Gender</label>
+                      <div class="input-group">
+                          <div class="input-group-addon">
+                         <span class="glyphicon glyphicon-user"></span> 
+                          </div>
+                      <input type="text" name="field5" class="form-control is-valid" id="validationServer02" placeholder="Enter Gender"  required>
+                    </div>
+                  </div>
+            <br><br><br><br>    
+            <div class="col-md-10 ">
+                <label for="validationServer04">Date Of Birth</label>
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </div>
+                <input type="date" name="field6" class="form-control is-invalid" id="validationServer04" placeholder="Enter Date" required>
+              </div>
+              </div>
+              <br><br><br><br> 
+    
+     <div class="col-md-10">
+                <label for="validationServer05">Address</label>
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-home"></span>
+                    </div>
+    
+                <textarea class="form-control" name="field7" rows="5" id="comment"></textarea>
+              </div>
+              </div>
+    
+          </div>
+    <!-- -------------------------------Job Details ---------------------- -->
+    
+          <div>
+                <div  >
+                        <img src="images/jobdes.png" height="15%" alt="Personal Detail" margin=0px><span  style="color:rgba(58, 13, 7, 0.726);size:20%"><font size="4">Job Details</font></span></div>
+              <div class="col-md-10">
+                  <label for="validationServer05">Title</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-number"></span>
+                    </div>
+                  <input type="text" name="field8" class="form-control is-invalid" id="validationServer05" placeholder="Job Title" required>
+                </div>
+                </div>
+                <br><br><br><br>
+    
+              <div class="col-md-10">
+                  <label for="validationServer05">Department</label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-number"></span>
+                    </div>
+                  <input type="text" name="field10" class="form-control is-invalid" id="validationServer05" placeholder="Department" required>
+                </div>
+                </div>
+                <br><br><br><br> 
+              <div class="col-md-10">
+                <label for="validationServer05">Start Date</label>
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </div>
+                <input type="date" name="sdate" class="form-control is-invalid" id="validationServer05" placeholder="start date" required>
+              </div>
+              </div>
+              <br><br><br><br> 
+    
+    
+              <div class="col-md-10">
+                <label for="validationServer05">Salary</label>
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-number"></span>
+                    </div>
+                <input type="number" name="sal" class="form-control is-invalid" id="validationServer05" placeholder="salary" required>
+              </div>
+              </div>
+    
+              <br><br><br><br>
+    
+              <div class="col-md-10">
+                  <label for="validationServer05">
+                    pay Scale
+                  </label>
+                  <div class="input-group">
+                    <div class="input-group-addon">
+                        <span class="glyphicon glyphicon-number"></span>
+                    </div>
+                  <input type="text" name="field11" class="form-control is-invalid" id="validationServer05" placeholder="PayScale" required>
+                </div>
+                </div>
+    
+          </div>
+    
+    
+    <!-- --------------------- Account & Emergency Info ----------------   -->
+    
+          <div>
+    
+                <div  >
+                        <img src="images/personaldetail.png" height="15%" alt="Personal Detail" margin=0px><span  style="color:rgba(58, 13, 7, 0.726);size:20%"><font size="4">Account Details</font></span></div>
+              <div class="col-md-10">
+                  <label for="validationServer05">UserName</label>
+                  <div class="input-group">
+                      <div class="input-group-addon">
+                     <span class="glyphicon glyphicon-user"></span> 
+                      </div>
+                  <input type="text" name="field12" class="form-control is-invalid" id="validationServer05" placeholder="user name" required>
+                </div>
+                </div>
+                <br><br><br><br> 
+                <div class="col-md-10">
+                  <label for="validationServer05">Password</label>
+                  <div class="input-group">
+                      <div class="input-group-addon">
+                     <span class="glyphicon glyphicon-eye-close"></span> 
+                      </div>
+                  <input type="password" name="field13" class="form-control is-invalid" id="validationServer05" placeholder="Password" required>
+                </div>
+                </div>
+                <br><br><br><br> 
+                
+                          <br><br><br><br> 
+                     
+                             <!-- <input type="submit" value="Register" />-->
+    
+          </div>
+    <div>
+            
+            <div  >
+                    <img src="images/emerg.png" height="15%" alt="Personal Detail" margin=0px><span  style="color:rgba(58, 13, 7, 0.726);size:20%"><font size="4">Emergency  Details</font></span></div>
+          
+            <div class="col-md-10">
+                <label for="validationServer05">Full Name</label>
+                <div class="input-group">
+                    <div class="input-group-addon">
+                   <span class="glyphicon glyphicon-user"></span> 
+                    </div>
+                <input type="text" name="field14" class="form-control is-invalid" id="validationServer05" placeholder="Enter Name" required>
+              </div>
+              </div>
+              <br><br><br><br> 
+              <div class="col-md-10">
+                    <label for="validationServer05">Relationship</label>
+                    <div class="input-group">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-number"></span>
+                        </div>
+                    <input type="text" name="field15" class="form-control is-invalid" id="validationServer05" placeholder="Relationship" required>
+                </div>
+                  </div>
+                  <br><br><br><br> 
+                  <div class="col-md-10">
+                        <label for="validationServer05">Phone</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">
+                           <span class="glyphicon glyphicon-earphone"></span> 
+                            </div>
+                        <input type="number" name="field16" class="form-control is-invalid" id="validationServer05" placeholder="03223454234" required>
+                      </div>
+                      </div>
+    </div>
+
+               
+            
+    
+           
+      
+        
+            </div>
+            <center>
+            <input type="image" src="images/regbtn.jpg" alt="Submit" width="40%" height="50%"></center>
+        </form>
+            </div>
+
+            
+      </div>
+
+
+
             <div class="footer">
                 <p></p>
               </div>
@@ -212,4 +464,4 @@
     
     
     </body>
-             
+             </html>

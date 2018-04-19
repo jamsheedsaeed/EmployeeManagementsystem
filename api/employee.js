@@ -30,16 +30,20 @@ exports.empregister= function(req, res){
         fname: req.body.field2,
         Email: req.body.field3,
         phone: req.body.field4,
-        dob: req.body.field5,
-        address: req.body.field6,
-        username: req.body.field7,
-        Password: req.body.field8,
+        gender:req.body.field5,
+        dob: req.body.field6,
+        address: req.body.field7,
+        title:req.body.field8,
         department: req.body.field9,
         startdate: req.body.sdate,
         salary: req.body.sal,
-        EmgFullName: req.body.field12,
-        Relationship: req.body.field13,
-        EPhone: req.body.field14
+        payscale: req.body.field11,
+        username: req.body.field12,
+        Password: req.body.field13,
+   
+        EmgFullName: req.body.field14,
+        Relationship: req.body.field15,
+        EPhone: req.body.field16
   
     });
     newEmployee.save((err, Employee)=>{

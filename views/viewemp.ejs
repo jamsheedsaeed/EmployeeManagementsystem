@@ -28,7 +28,13 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
+<style>
+    body {
+      background-image: url("images/newback.jpg");
+} 
 
+
+</style>
 
 
 <!--<script src="script.js"></script>-->
@@ -40,7 +46,7 @@
 <div>
     
 <div>
-    <div  ><img src="images/ems.jpg"  height="80px" width="500px" margin=0px>
+    <div  ><img src="images/ems.jpg"  height="14%" width="20%" margin=0px>
       <img src="images/empall.jpg"  height="80px" width="500px" align="right">
     </div>
     <div class="nav">
@@ -302,7 +308,7 @@ function populateTable(){
         console.log('Unable to put data'); 
 
        
-                $.getJSON("http://localhost:3000/employee", function(data){
+                $.getJSON("https://employeemanagementsystem.herokuapp.com/employee", function(data){
                     console.log(data);
            
                   $.each(data, function(i, field){
