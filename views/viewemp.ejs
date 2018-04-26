@@ -298,7 +298,7 @@ $(document).ready(function(){
 
 $('#emptable').on('click','a.edit-customer', function(e) {
 
-  var dmJSON = "http://localhost:3000/employee";
+  var dmJSON = "https://employeemanagementsystem.herokuapp.com/employee";
   var employee_id = $(this).attr("rel"); 
   data:{employee_id:employee_id}
  $.getJSON( dmJSON, function(data) {
@@ -358,7 +358,7 @@ function populateTable(){
         console.log('Unable to put data'); 
 
        
-                $.getJSON("http://localhost:3000/employee", function(data){
+                $.getJSON("https://employeemanagementsystem.herokuapp.com/employee", function(data){
                     console.log(data);
            
                   $.each(data, function(i, field){
