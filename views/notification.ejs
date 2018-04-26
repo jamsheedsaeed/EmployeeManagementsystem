@@ -222,7 +222,7 @@ body {
     </form>-->
 
     
-    <form class="form-style-9" action="/eventadd" method="POST" enctype="multipart/form-data"  >
+    <form class="form-style-9" action="/addnotification" method="POST"  >
         <center>
                 <span  style="color:rgb(105, 25, 125);size:20%"><font size="6">Registration Form</font></span>
             </center>
@@ -232,7 +232,7 @@ body {
                 <div>
 
                     <div  ><center>
-                            <img src="images/evenico.gif" height="100px" alt="Personal Detail" margin=0px><span  style="color:rgba(58, 13, 7, 0.726);size:20%"></span>
+                            <img src="images/notiicon.jpg" height="100px" alt="Personal Detail" margin=0px><span  style="color:rgba(58, 13, 7, 0.726);size:20%"></span>
                         </center>
                         </div>
 <br>
@@ -251,16 +251,7 @@ body {
                                                     </div>
                                                    </div>
 
-                                               
-                                            <div class="form-group col-md-15 mb-2 ">
-                                                    
-                                                    <div class="input-group">
-                                                     <div class="input-group-addon">
-                                                    <span class="glyphicon glyphicon-pencil"></span> 
-                                                     </div>
-                                                     <input type="text" name="mysubtitle" class="form-control is-valid" id="validationServer01" placeholder="Sub Title" />
-                                                    </div>
-                                                   </div>
+                                        
                                                
                                                    <div class="form-group col-md-15 mb-2 ">
                                                        
@@ -268,7 +259,7 @@ body {
                                                          <div class="input-group-addon">
                                                         <span class="glyphicon glyphicon-pencil"></span> 
                                                          </div>
-                                                         <input type="text" name="mydescription" class="form-control is-valid" id="validationServer01" placeholder="Description" />
+                                                         <textarea class="form-control" name="field7" rows="5" id="comment"  placeholder="Description"></textarea>
                                                         </div>
                                                        </div>
                                        
@@ -283,16 +274,7 @@ body {
                                                     </div>
                                                    </div>
 
-                                           
-                                 <div class="form-group col-md-15 mb-2 ">
-                                       
-                                        <div class="input-group">
-                                         <div class="input-group-addon">
-                                        <span class="glyphicon glyphicon-upload"></span> 
-                                         </div>
-                                         <input id="userFile" type="file" name="userFile" class="form-control is-valid" id="validationServer01" placeholder="Image Url" />
-                                        </div>
-                                       </div>
+                        
                             
                                         <button type="submit" value="Register" class="btn btn-success">Submit</button>
                                       

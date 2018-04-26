@@ -5,7 +5,7 @@ var eventSchema = new mongoose.Schema({
     title:String,
     subtitle:String,
     description:String,
-    Date:String,
+    date:String,
     imgurl:String
 });
 const Events = module.exports = mongoose.model('Eventschema', eventSchema);

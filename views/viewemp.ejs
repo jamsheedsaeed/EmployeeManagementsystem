@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,17 +10,6 @@
 <title>view employee</title>
 
 <link href="/stylesheet/view.css" rel="stylesheet">
-<!--
-<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.3/angular.min.js"></script>
-<script src="//cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.3/angular-route.min.js"></script>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>>
-<!--<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">-->
-<!--<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>-->
-
-<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>-->
-
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
@@ -78,64 +68,9 @@
 
       </div>
       <div class="knockout">Employees Record</div>
-  
-<!--
-  <div  ><img src="images/ems1.png"  height="100px" width="200px" margin=0px> </div>
-   
-    <nav class="topnav" id="myTopnav"  role="navigation"  style=" padding-left:235px;background-color:rgb(105, 25, 125)">
-       <ul class="nav navbar-nav">
-      <li class="active"><a href="/secret">Home<span class="sr-only">(current)</span></a></li>
-     <li><a href="/about">About<span ></span></a></li>
-      <li><a href="/register">Register</a></li>
-      <li><a href="/news">News</a></li>
-      <li><a href="/viewemp">view</a></li>
-      <li><a href="/event">View Events</a></li>
-      <li><a href="/events">Events</a></li>
-      <li><a href="">Leaves details</a></li>
-
-      <li class="dropdown show">
-  <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-    Dropdown link
-  </a>
-
-  <ui class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-    <a class="dropdown-item" href="#">Action</a>
-    <a class="dropdown-item" href="#">Another action</a>
-    <a class="dropdown-item" href="#">Something else here</a>
-  </ui>
-</li>
-     
-    </ul>
-</nav>
-</div>
--->
 <br/>
 
 </html>
-<!--
-<div class="container" style="margin-left:14%; margin-top:35px;">
-  <h4>Select Records to Show:</h4>
-  <div class="form-group">
-    <select name="state" id="maxRows" class="form-control" style="width: 150px;">
-    <option value="5000">All</option>	
-    <option value="5">5</option>	
-    <option value="10">10</option>	
-    <option value="15">15</option>	
-    <option value="20">20</option>	
-    <option value="50">50</option>	
-    <option value="100">100</option>		
-    </select>
-    </div>		
-  <div class="pagination-container">
-  <nav>
-    <ul class="pagination"></ul>
-  </nav>
-
-</div>
-  </div>
--->
-
-
 
 <script>
 var table = '#emptable'
@@ -227,7 +162,7 @@ $(document).ready(function(){
        </div> 
     
 <table id="emptable" class="responstable" style="width:100%;  margin-right:50px;" >
- 
+  <thead>
     <tr  id = "rowid" >
     <th  width="5%" name="empname" id="empname">Employee Name</th>
     <th width="5%" name="empemail" id="empemail">Email</th>
@@ -240,64 +175,179 @@ $(document).ready(function(){
     <th width="5%">Action Update</th>
 
   </tr>
-
-
+</thead>
+<tbody id="customer-rows">
+ 
+</tbody>
 
  </table>
-        
- <div id="dataModal" class="modal fade">  
-  <div class="modal-dialog">  
-       <div class="modal-content">  
-            <div class="modal-header">  
-                 <button type="button" class="close" data-dismiss="modal">&times;</button>  
-                 <h4 class="modal-title">Employee Details</h4>  
-            </div>  
-            <div class="modal-body" id="employee_detail">  
-            </div>  
-            <div class="modal-footer">  
-                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
-            </div>  
-       </div>  
-  </div>  
-</div>  
-<div id="add_data_Modal" class="modal fade">  
-  <div class="modal-dialog">  
-       <div class="modal-content">  
-            <div class="modal-header">  
-                 <button type="button" class="close" data-dismiss="modal">&times;</button>  
-                 <h4 class="modal-title">Employee Detail</h4>  
-            </div>  
-            <div class="modal-body">  
-                 <form method="post" id="insert_form">  
-                      <label>Enter Employee Name</label>  
-                      <input type="text" name="name" id="name" class="form-control" />  
-                      <br />  
-                      <label>Enter Employee Address</label>  
-                      <textarea name="address" id="address" class="form-control"></textarea>  
-                      <br />  
-                      <label>Select Gender</label>  
-                      <select name="gender" id="gender" class="form-control">  
-                           <option value="Male">Male</option>  
-                           <option value="Female">Female</option>  
-                      </select>  
-                      <br />  
-                      <label>Enter Designation</label>  
-                      <input type="text" name="designation" id="designation" class="form-control" />  
-                      <br />  
-                      <label>Enter Age</label>  
-                      <input type="text" name="age" id="age" class="form-control" />  
-                      <br />  
-                      <input type="hidden" name="employee_id" id="employee_id" />  
-                      <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" />  
-                 </form>  
-            </div>  
-            <div class="modal-footer">  
-                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
-            </div>  
-       </div>  
-  </div>  
-</div>  
-     
+
+
+
+
+
+ 
+
+ <!-- Modal Code For Just View -->
+ <div id="add_data_Modal" class="modal fade">  
+    <div class="modal-dialog">  
+         <div class="modal-content">  
+              <div class="modal-header">  
+                   <button type="button" class="close" data-dismiss="modal">&times;</button>  
+                 <center> <h4 class="modal-title">Employee Details</h4>  </center> 
+              </div>  
+              <div class="modal-body">  
+                   <form method="post" id="insert_form">  
+
+
+                      <div class="modal-header">  
+                          <center><h4 class="modal-title">Personal Details</h4> </center> 
+                           </div>
+                        <label>Employee Name</label>  
+                        <input  name="name" id="name" class="form-control" readonly/>  
+                        <br />  
+
+                        <label>Father Name</label>  
+                        <input type="text" name="fname" id="fname" class="form-control" readonly />  
+                        <br />  
+
+                        <label>Email</label>  
+                        <input type="text" name="email" id="email" class="form-control" readonly/>  
+                        <br />  
+
+                        <label>Phone</label>  
+                        <input type="text" name="phone" id="phone" class="form-control" readonly />  
+                        <br />  
+
+                        <label>Gender</label>  
+                        <input type="text" name="gender" id="gender" class="form-control" readonly />  
+                        <br />
+
+                        <label>Date Of Birth</label>  
+                        <input type="text" name="dob" id="dob" class="form-control" readonly />  
+                        <br />
+
+                        <label>Employee Address</label>  
+                        <textarea name="address" id="address" class="form-control" readonly></textarea>  
+                        <br />  
+
+                        <div class="modal-header">  
+                        <center><h4 class="modal-title">Job Details</h4> </center>
+                        </div>
+
+                        <label>Title</label>  
+                        <textarea name="title" id="title" class="form-control" readonly></textarea>  
+                        <br />
+                        
+                        <label>Employee Address</label>  
+                        <textarea name="department" id="department" class="form-control" readonly></textarea>  
+                        <br />  
+
+                        <label>Start Date</label>  
+                        <textarea name="sdate" id="sdate" class="form-control" readonly></textarea>  
+                        <br />  
+
+                        <label>Salary</label>  
+                        <textarea name="salary" id="salary" class="form-control" readonly></textarea>  
+                        <br /> 
+
+                        <label>Pay Scale</label>  
+                        <textarea name="pscale" id="pscale" class="form-control" readonly></textarea>  
+                        <br /> 
+                        <div class="modal-header">  
+                           <center><h4 class="modal-title">Account Details</h4> </center> 
+                            </div>
+
+                        <label>User Name</label>  
+                        <textarea name="uname" id="uname" class="form-control" readonly></textarea>  
+                        <br /> 
+
+                        <label>Password</label>  
+                        <textarea name="password" id="password" class="form-control" readonly></textarea>  
+                        <br /> 
+                        <div class="modal-header">  
+                           <center><h4 class="modal-title">Emergency Details</h4> </center> 
+                            </div>
+
+                        <label>Emergency Contact Name</label>  
+                        <textarea name="ecname" id="ecname" class="form-control" readonly></textarea>  
+                        <br /> 
+
+                        <label>Relationship</label>  
+                        <textarea name="relationship" id="relationship" class="form-control" readonly></textarea>  
+                        <br /> 
+
+                        <label>Phone</label>  
+                        <textarea name="ephone" id="ephone" class="form-control" readonly></textarea>  
+                        <br /> 
+
+
+                        <input type="hidden" name="employee_id" id="employee_id" />  
+                       <!-- <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" />  -->
+                   </form>  
+              </div>  
+              <div class="modal-footer">  
+                   <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
+              </div>  
+         </div>  
+    </div>  
+</div> 
+
+<script>
+
+
+$('#emptable').on('click','a.edit-customer', function(e) {
+
+  var dmJSON = "http://localhost:3000/employee";
+  var employee_id = $(this).attr("rel"); 
+  data:{employee_id:employee_id}
+ $.getJSON( dmJSON, function(data) {
+  console.log(data);
+    var idx=1;
+    $.each(data, function(i, f) {
+      var idx = $(this).data('id');
+        idx++;
+       // var $popup ="<popup id='"+idx+"' class='mystyles1'><tr>" + "<p>" + f.employeename + "</p></tr>" + "<tr><p>" + f.dob + "</p></tr>" + "<tr><p>" + f.empemail + "</p></tr>" + "<tr><p> " + f.username+ "</p></tr>" + "&nbsp;&nbsp;&nbsp;</popup>"
+       // $("#popup-container").append($popup)
+       $('#name').val(f.employeename);
+       $('#fname').val(f.fname)
+       $('#email').val(f.Email)
+       $('#phone').val(f.phone)
+       $('#gender').val(f.gender)
+       $('#dob').val(f.dob)
+       $('#address').val(f.address)
+
+       $('#title').val(f.title)
+       $('#department').val(f.department)
+       $('#sdate').val(f.startdate)
+       $('#salary').val(f.salary)
+       $('#pscale').val(f.payscale)
+
+
+       $('#uname').val(f.username)
+       $('#password').val(f.Password)
+
+
+       $('#ecname').val(f.EmgFullName)
+       $('#relationship').val(f.Relationship)
+       $('#ephone').val(f.EPhone)
+
+
+
+
+
+
+       $('#add_data_Modal').modal('show'); 
+       
+    });
+ });
+
+
+
+ 
+});
+</script>
+
     <script>
       
       populateTable();
@@ -308,17 +358,17 @@ function populateTable(){
         console.log('Unable to put data'); 
 
        
-                $.getJSON("https://employeemanagementsystem.herokuapp.com/employee", function(data){
+                $.getJSON("http://localhost:3000/employee", function(data){
                     console.log(data);
            
                   $.each(data, function(i, field){
                    
                        $('#emptable').append('<tr  ><td>'+field.employeename+'</td><td>'+field.Email+
-                        '</td><td>'+field.phone+'</td><td>'+field.address+'</td><td>'+field.department+'</td><td>'+field.dob+'</td><td><input type="button" title="test" onclick="generateReport();" value="Get PDF Report"/> </td><td><a href="#" id="btn1" class="deleteEmployee btn btn-danger "   rel="' + this._id + '" >delete</a></td> <td><input type="button" name="edit" value="Edit" rel="' + this._id + '" class="btn btn-info edit_data" /></td> </tr>' 
+                        '</td><td>'+field.phone+'</td><td>'+field.address+'</td><td>'+field.department+'</td><td>'+field.dob+'</td><td><a href="#" rel="'+this._id+'" class="edit-customer btn btn-success">View</a> </td><td><a href="#" id="btn1" class="deleteEmployee btn btn-danger "   rel="' + this._id + '" >delete</a></td> <td><input type="button" name="edit" value="Edit" rel="' + this._id + '" class="btn btn-info edit_data" /></td> </tr>' 
             
                     );
 
-               
+              
                         });
                      
         
@@ -329,18 +379,6 @@ function populateTable(){
             });
           }
 
-          function generateReport() {  
-            
-var request = {  
-        template: {  
-              name: 'Employee.ejs'  
-             },   
-                   data: "http://localhost:3000/employee"
-                  
-        };  
-jsreport.render($("#employees"), request);   
-// here ”placeholder” is div tag name in html page  
-}  
   
 $('#emptable tbody').on('click', 'td a.deleteEmployee', function deleteEmployee(event){
 
@@ -387,7 +425,57 @@ $('#emptable tbody').on('click', 'td a.deleteEmployee', function deleteEmployee(
 
 
  </script>
+
+<div id="popupdiv">
+</div>
+
+<script type="text/javascript">
+  $("details").click("click", function () {
+   var id = $(this).attr("rel");
+console.log(id);
+  $('#popupdiv').modal();
+  $.ajax({
+          type: "GET",
+          contentType: "application/json; charset=utf-8",
+
+          url: "http://localhost:3000/employee"+ id,
+         
+          data: "",
+          dataType: "json",
+          success: function (data) { //which contains name,email etc how can i append the  details on to the "popupdiv" div by inserting in to another div
+         console.log(data);
+          $("<div>").appendTo("#popupdiv").append(data.employeename);
+          }
+  });
+  return false;                     
+   });
+   </script>
+
+
+
+
+
 <script>
+
+function popupshow() {
+$(function() {
+   var dmJSON = "http://localhost:3000/employee";
+ 
+   $.getJSON( dmJSON, function(data) {
+    console.log(data);
+      var idx=1;
+      $.each(data, function(i, f) {
+        var myid = 'mypop'+ (i+1); 
+          idx++;
+          var $popup="<popup id='"+myid+"' class='mystyles1'><tr>" + "<p>" + f.employeename + "</p></tr>" + "<tr><p>" + f.dob + "</p></tr>" + "<tr><p>" + f.empemail + "</p></tr>" + "<tr><p> " + f.username+ "</p></tr>" + "&nbsp;&nbsp;&nbsp;</popup>"
+          $("#popup-container").append($popup)
+      });
+   });
+});
+}
+
+
+
     function myFunction() {
       var input, filter, table, tr, td, i;
       input = document.getElementById("myInput");
@@ -434,107 +522,6 @@ $(document).on('click', '.edit_data', function(){
 
 
 
-
- /* $(document).ready(function(){  
-          $('#add').click(function(){  
-              $('#insert').val("Insert");  
-              $('#insert_form')[0].reset();  
-          });  
-          $(document).on('click', '.edit_data', function(){  
-
-         
-              var employee_id = $(this).attr("rel");  
-              $.ajax({  
-                    url:'http://localhost:3000/employee' , 
-                   
-                    type:"POST",  
-                    data   : function(data){  
-                      console.log("edit function is called");
-                        ('#name').val(data.name);  
-                        ('#address').val(data.address);  
-                       // ('#gender').val(data.gender);  
-                    },
-                   // data:{employee_id:employee_id},  
-                    
-                    success:function(data){  
-                      console.log("edit function is called");
-                        ('#name').val(data.name);  
-                        ('#address').val(data.address);  
-                        ('#gender').val(data.gender);  
-                        ('#designation').val(data.designation);  
-                        ('#age').val(data.age);  
-                        ('#employee_id').val(data.id);  
-                        ('#insert').val("Update");  
-                       
-                        ('#add_data_Modal').modal('show');  
-                    },error:function(data){
-                      // $('#name').val(data.username);  
-                      //   $('#address').val(data.address); 
-                      //   $('#employee_id').val(data._id);
-                      //$('#add_data_Modal').modal('show');  
-                         
-                      // var getIdFromRow = $(event.target).closest('tr').data('id');
-                      // $(this).find('#add_data_Modal').html($('<b> Order Id selected: ' + getIdFromRow  + '</b>'));
-                      // $('#name').val(data.getIdFromRow);  
-                      $('#add_data_Modal').modal('show');  
-
-                    }  
-              });  
-          });  
-          $('#insert_form').on("submit", function(event){  
-              event.preventDefault();  
-              if($('#name').val() == "")  
-              {  
-                    alert("Name is required");  
-              }  
-              else if($('#address').val() == '')  
-              {  
-                    alert("Address is required");  
-              }  
-              else if($('#designation').val() == '')  
-              {  
-                    alert("Designation is required");  
-              }  
-              else if($('#age').val() == '')  
-              {  
-                    alert("Age is required");  
-              }  
-              else  
-              {  
-                    $.ajax({  
-                        url:"insert.php",  
-                        method:"POST",  
-                        data:$('#insert_form').serialize(),  
-                        beforeSend:function(){  
-                              $('#insert').val("Inserting");  
-                        },  
-                        success:function(data){  
-                              $('#insert_form')[0].reset();  
-                              $('#add_data_Modal').modal('hide');  
-                              $('#employee_table').html(data);  
-                        }  
-                    });  
-              }  
-          });  
-          $(document).on('click', '.view_data', function(){  
-              var employee_id = $(this).attr("id");  
-              if(employee_id != '')  
-              {  
-                    $.ajax({  
-                        url:"select.php",  
-                        method:"POST",  
-                        data:{employee_id:employee_id},  
-                        success:function(data){  
-                              $('#employee_detail').html(data);  
-                              $('#dataModal').modal('show');  
-                        },error:function(data){
-                          $('#employee_detail').html(data);  
-                              $('#dataModal').modal('show');  
-                        } 
-                    });  
-              }            
-          });  
-    }); 
   </script>
 
 

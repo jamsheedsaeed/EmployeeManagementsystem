@@ -1,32 +1,57 @@
 const exprss = require('express');
 const News = require('../models/news.js');
+var multer  = require('multer')
+var upload = multer({ dest: 'uploads/' })
+var path = require('path');
 var app = exprss();
 //var url = "mongodb://jamsheed saeed:malik1234@ds161574.mlab.com:61574/new";
 
 //function used to post some data in database
 
-exports.addnews=function(req,res){
-  let newNews = new News({
-
-    title: req.body.field1,
-    subtitle:req.body.field2,
-    description: req.body.field5,
-    Date:req.body.field6,
- 
-});
-newNews.save((err, News)=>{
-    if(err){
-        res.json({msg: 'Failed to add News'});
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+      cb(null, './uploads')
+    },
+    filename: function (req, file, cb) {
+      cb(null, file.fieldname + '-' + Date.now())
     }
-    else{
-       res.render("news");
+  })
+  var upload = multer({ storage: storage })
+
+
+  exports.addnews = function(req,res){
+    var upload = multer({ storage: storage }).single('userFile')
+    upload(req, res, function (err) {
+        console.log("file Name",req.file)
+        console.log("Request: ",req.body);
+        console.log(req.body);
+        var params = req.body;
+
+        let newNews = new News({
+            title   : req.body.mytitle,
+            subtitle: req.body.mysubtitle,
+            description: req.body.mydescription,
+            date: req.body.mydate,
+        imgurl:req.file.path
+      
         
-    }
-});
-   
+        
+    });
 
-  
-  }
+    newNews.save((err, News)=>{
+        if(err){
+            res.json({msg: 'Failed to add the notifications'});
+        }
+        else{
+         //   res.json({msg: 'notifications is added successfully'});
+         res.render("news",News);
+        }
+    });
+    
+    })
+}
+
+
 
   exports.getAll = function (req, res) {
     News

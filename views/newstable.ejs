@@ -1,0 +1,372 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<meta http-equiv="Content-Security-Policy" content="block-all-mixed-content" />
+
+<meta charset="UTF-8">
+<title>view employee</title>
+
+<link href="/stylesheet/view.css" rel="stylesheet">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+<style>
+    body {
+      background-image: url("images/newback.jpg");
+} 
+
+
+</style>
+
+
+<!--<script src="script.js"></script>-->
+
+</head>
+
+<body>
+
+<div>
+    
+<div>
+    <div  ><img src="images/ems.jpg"  height="14%" width="20%" margin=0px>
+      <img src="images/empall.jpg"  height="80px" width="500px" align="right">
+    </div>
+    <div class="nav">
+				<ul>
+            <li class="active"><a href="/secret">Home<span class="sr-only">(current)</span></a></li>
+             <li><a href="/register">Register</a></li>
+             <li><a href="/news">News</a></li>
+             <li><a href="/events">Events</a></li>
+             <li><a href="/events">Notifications</a></li>
+             
+					<li class="Logout" style="float:right"><a href="/">Logout</a></li>
+					<div class="dropdown">
+                    <button class="dropbtn">Data View 
+                    <i class="fa fa-caret-down"></i>
+                    </button>
+                                    <div class="dropdown-content">
+							<a href="/viewemp">Employees Data</a>
+							<a class="active" href="/page/viewstransport">News Data</a>
+							<a href="/page/viewsdining">Events Data</a>
+							<a href="/page/viewnews">Leaves Details</a>
+							<a href="/page/viewnews">Notifications Details</a>
+	                       
+
+						</div>
+					</div>
+
+
+				</ul>
+
+      </div>
+      <div class="knockout">Employees Record</div>
+<br/>
+
+</html>
+
+<script>
+var table = '#emptable'
+$('#maxRows').on('change', function(){
+  $('.pagination').html('')
+  var trnum = 0
+  var maxRows = parseInt($(this).val())
+  var totalRows = $(table+' tbody tr').length
+  $(table+' tr:gt(0)').each(function(){
+    trnum++
+    if(trnum > maxRows){
+      $(this).hide()
+    }
+    if(trnum <= maxRows){
+      $(this).show()
+    }
+  })
+  if(totalRows > maxRows){
+    var pagenum = Math.ceil(totalRows/maxRows)
+    for(var i=1;i<=pagenum;){
+      $('.pagination').append('<li data-page="'+i+'">\<span>'+ i++ +'<span class="sr-only">(current)</span></span>\</li>').show()
+    }
+  }
+  $('.pagination li:first-child').addClass('active')
+      $('.pagination li').on('click',function(){
+      var pagenum = $(this).attr('data-page')
+      var trIndex = 0;
+        $('.pagination li').removeClass('active')
+        $(this).addClass('active')
+        $(table+' tr:gt(0)').each(function(){
+        trIndex++
+        if(trIndex > (maxRows*pagenum) || trIndex <= ((maxRows*pagenum)-maxRows)){
+          $(this).hide()
+        }else{
+          $(this).show()
+        }
+        })
+      })								
+})
+
+$(function(){
+var id = 0;
+  $('table tr:gt(0)').each(function(){
+  id++
+  $(this).prepend('<td>'+id+'</td>')
+  })
+})
+
+
+$(document).ready(function(){  
+             $('#search').keyup(function(){  
+                  search_table($(this).val());  
+             });  
+             function search_table(value){  
+                  $('#emptable tr').each(function(){  
+                       var found = 'false';  
+                       $(this).each(function(){  
+                            if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)  
+                            {  
+                                 found = 'true';  
+                            }  
+                       });  
+                       if(found == 'true')  
+                       {  
+                            $(this).show();  
+                       }  
+                       else  
+                       {  
+                            $(this).hide();  
+                       }  
+                  });  
+             }  
+        });
+
+      
+</script>
+
+    <title>View Employee Details</title>
+    <body>
+      <!-- <center><h1>Employees Record</h1></center> -->
+  
+      <div class="wrap">
+          <div class="search">
+             <input type="text" id="myInput" onkeyup="myFunction()" class="searchTerm" placeholder="What are you looking for?">
+             <button type="submit" class="searchButton">
+               <i class="fa fa-search"></i>
+            </button>
+          </div>
+       </div> 
+    
+<table id="newstable" class="responstable" style="width:100%;  margin-right:50px;" >
+ 
+    <tr  id = "rowid" >
+    <th  width="5%" name="title" id="title">Title</th>
+    <th width="5%" name="subtitle" id="subtitle">SubTitle</th>
+    <th width="5%" name="description" id="description">Description</th>
+    <th width="5%" name="imageurl" id="imageurl">Image Url</th>
+    <th width="5%">Action Delete</th>
+    <th width="5%">Action Update</th>
+  </tr>
+
+
+
+ </table>
+        
+ <div id="dataModal" class="modal fade">  
+  <div class="modal-dialog">  
+       <div class="modal-content">  
+            <div class="modal-header">  
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>  
+                 <h4 class="modal-title">Employee Details</h4>  
+            </div>  
+            <div class="modal-body" id="employee_detail">  
+            </div>  
+            <div class="modal-footer">  
+                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
+            </div>  
+       </div>  
+  </div>  
+</div>  
+<div id="add_data_Modal" class="modal fade">  
+  <div class="modal-dialog">  
+       <div class="modal-content">  
+            <div class="modal-header">  
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>  
+                 <h4 class="modal-title">Employee Detail</h4>  
+            </div>  
+            <div class="modal-body">  
+                 <form method="post" id="insert_form">  
+                      <label>Enter Employee Name</label>  
+                      <input type="text" name="name" id="name" class="form-control" />  
+                      <br />  
+                      <label>Enter Employee Address</label>  
+                      <textarea name="address" id="address" class="form-control"></textarea>  
+                      <br />  
+                      <label>Select Gender</label>  
+                      <select name="gender" id="gender" class="form-control">  
+                           <option value="Male">Male</option>  
+                           <option value="Female">Female</option>  
+                      </select>  
+                      <br />  
+                      <label>Enter Designation</label>  
+                      <input type="text" name="designation" id="designation" class="form-control" />  
+                      <br />  
+                      <label>Enter Age</label>  
+                      <input type="text" name="age" id="age" class="form-control" />  
+                      <br />  
+                      <input type="hidden" name="employee_id" id="employee_id" />  
+                      <input type="submit" name="insert" id="insert" value="Insert" class="btn btn-success" />  
+                 </form>  
+            </div>  
+            <div class="modal-footer">  
+                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
+            </div>  
+       </div>  
+  </div>  
+</div>  
+     
+    <script>
+      
+      populateTable();
+function populateTable(){
+       var mydata;
+        var userdata;
+      $(document).ready(function(){
+        console.log('Unable to put data'); 
+
+       
+                $.getJSON("http://localhost:3000/viewnews", function(data){
+                    console.log(data);
+           
+                  $.each(data, function(i, field){
+                   
+                       $('#newstable').append('<tr  ><td>'+field.title+'</td><td>'+field.subtitle+
+                        '</td><td>'+field.description+'</td><td>'+field.imgurl+'</td><td><a href="#" id="btn1" class="deleteEmployee btn btn-danger "   rel="' + this._id + '" >delete</a></td> <td><input type="button" name="edit" value="Edit" rel="' + this._id + '" class="btn btn-info edit_data" /></td> </tr>' 
+            
+                    );
+
+               
+                        });
+                     
+        
+                        
+     
+                })
+               
+            });
+          }
+
+          function generateReport() {  
+            
+var request = {  
+        template: {  
+              name: 'Employee.ejs'  
+             },   
+                   data: "http://localhost:3000/viewnews"
+                  
+        };  
+jsreport.render($("#employees"), request);   
+// here ”placeholder” is div tag name in html page  
+}  
+  
+$('#newstable tbody').on('click', 'td a.deleteEmployee', function deleteEmployee(event){
+
+
+    event.preventDefault();
+    // Pop up a confirmation dialog
+    var confirmation = confirm('Are you sure you want to delete this user?');
+    // Check and make sure the user confirmed
+    if (confirmation === true) {
+        // If they did, do our delete
+        $.ajax({
+            method:'DELETE',
+            type: 'DELETE',
+            url: '/employee/'  + $(this).attr('rel'),
+
+        }).done(function( response) {
+          
+           
+          
+                      // Check for a successful (blank) response
+          
+                      if (response.msg == '') {
+                       
+          
+                      }
+          
+                      else {
+                     
+                        alert('sucessfully deleted!');
+                        location.reload();
+                        
+          
+                      }
+
+});
+}else {
+
+// If they said no to the confirm, do nothing
+
+        return false;
+
+    }
+})
+
+
+ </script>
+<script>
+    function myFunction() {
+      var input, filter, table, tr, td, i;
+      input = document.getElementById("myInput");
+      filter = input.value.toUpperCase();
+      table = document.getElementById("emptable");
+      tr = table.getElementsByTagName("tr");
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
+        if (td) {
+          if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            tr[i].style.display = "";
+          } else {
+            tr[i].style.display = "none";
+          }
+        }       
+      }
+    }
+    </script>
+
+
+
+  <script>  
+var trEdit = null;
+$(document).on('click', '.edit_data', function(){  
+  var table,tr,td,username;
+  trEdit = $(this).closest('tr');
+  var type = $(this).closest('tr').children('td.username').text();
+  var empemail = $(trEdit).find('ed:eq(1)').text;
+  $.getJSON("http://localhost:3000/employee", function(data){
+    $.each(data, function(i, field){
+
+      if(field._id == 'rel'){
+      
+     username = field.employeename;
+     alert("username:"+username);
+      }
+
+    });
+
+  });
+  
+
+});
+
+
+
+  </script>
+
+
+    </body>
+</html>

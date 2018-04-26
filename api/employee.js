@@ -5,26 +5,6 @@ var url = "mongodb://jamsheed saeed:malik1234@ds161574.mlab.com:61574/new";
 
 exports.empregister= function(req, res){
     let newEmployee = new Employee({
-/*
-       username: req.body.ename,
-        fname:req.body.fname,
-        password: req.body.pass,
-      //  birth_date:require.body.date,
-       Salary:req.body.sal,
-        gender : req.body.subject,
-        Blood : req.body.subject1,
-        Religion : req.body.subject2 ,
-        Status: req.body.subject3,
-        
-        Nationality: req.body.subject4,
-        Email : req.body.email,
-       // cnic:req.body.cnic,
-        Domicile :req.body.subject5 ,
-       interest:req.body.interest,
-       Address : req.body.address,
-      // Contact_num : req.body.contact ,
-        Qualification : req.body.qualifi ,
-        Department : req.body.subject6*/
 
         employeename: req.body.field1,
         fname: req.body.field2,
@@ -34,7 +14,7 @@ exports.empregister= function(req, res){
         dob: req.body.field6,
         address: req.body.field7,
         title:req.body.field8,
-        department: req.body.field9,
+        department: req.body.field10,
         startdate: req.body.sdate,
         salary: req.body.sal,
         payscale: req.body.field11,
@@ -51,11 +31,7 @@ exports.empregister= function(req, res){
             res.json({msg: 'Failed to add the User'});
         }
         else{
-       
             res.render("register");
-      
-         
-            
         }
     });
 }
@@ -99,11 +75,12 @@ exports.getAll = function (req, res) {
     }else{
      Employee.findOne({_id:req.params.id}).exec(function(error,Employee){
       //  console.log(Employee);
-      Employee.username=req.body.username?req.body.username:Events.title;
-      Employee.subtitle=req.body.subtitle?req.body.subtitle:Events.subtitle;
-      Employee.description=req.body.description?req.body.description:Events.description;
-      Employee.imageurl=req.body.imageurl?req.body.imageurl:Events.imageurl;
-      Employee.date=req.body.date?req.body.date:Events.date;      
+      Employee.employeename = req.body.employeename?req.body.field1:
+      Employee.fname=req.body.fname?req.body.field2:
+      Employee.Email=req.body.Email?req.body.field3:
+      Employee.phone=req.body.phone?req.body.field4:
+      Employee.gender=req.body.gender?req.body.field5:
+      Employee.dob=req.body.dob?req.body.field6:     
       Employee.save(function(error,Employee){
           if(error){
             res.status('500').send({message:'error found'})
@@ -115,30 +92,3 @@ exports.getAll = function (req, res) {
    }
   }
  
-/*
- exports.delete = function(req, res) {
-    ///your mongose delete query
-   
-    var db = req.db;
-    
-        var employeeDelete = req.params._id;
-    
-        db.collection('employees').removeById(employeeDelete, function(err, result) {  
-   
-        res.send((result === 1) ? { msg: '' } : { msg:'error: ' + err });
-      });
-   
-      }
-*/
-
-
-/*
-exports.delete =  function(req, res) {
-    var db = req.db;
-    var empdelete = req.params.id;
-    db.collection('employees').removeById(empdelete, function(err, result) {
-        res.send((result === 1) ? { msg: '' } : { msg:'error: ' + err });
-    });
-};*/
-
-  

@@ -55,6 +55,14 @@ module.exports = function(app) {
     app.get('/news', function (req, res) {
       res.render('news');
       });
+
+      
+
+      app.get('/newstable', function (req, res) {
+        res.render('newstable');
+        });
+
+
     app.get('/secret',  function (req, res) {
     res.render('secret');
     });
@@ -94,7 +102,14 @@ module.exports = function(app) {
       res.render("viewevent");
     });
 
-    
+   
+
+    app.get("/notification",function(req,res){
+      res.render("notification");
+    });
+
+
+
     app.get("/nextregister",function(req,res){
       res.render("nextregister");
     });
@@ -118,9 +133,9 @@ module.exports = function(app) {
     //----------------------------Backand  routes for Employee------------------------------------------
     var employee = require('../api/employee.js');
     app.post('/empregister', employee.empregister);
-
     app.get('/employee', employee.getAll);
      app.delete('/employee/:id', employee.delete);
+     app.post('/editemployee',employee.edit);
     //app.delete('/tasks/:id',employee.delete)
 
 
@@ -132,11 +147,17 @@ module.exports = function(app) {
 
 
     //---------------------------Defining Routes For Events-----------------------------------------------
-    var events = require('../api/events.js');
-    app.post('/eventadd', events.eventadd);
-    app.get('/viewevent', events.getAll);
-    app.delete('/eventdelete/:id', events.delete);
+     var events = require('../api/events.js');
+     app.post('/eventadd', events.eventadd);
+    // app.get('/viewevent', events.getAll);
+    // app.delete('/eventdelete/:id', events.delete);
+
     
+    // var eventss = require('../api/eventss.js');
+    // app.post('/eventadd', eventss.eventadd);
+    // app.get('/viewevent', eventss.getAll);
+    // app.delete('/eventdelete/:id', events.delete);
+
  //---------------------------Defining Routes For News-----------------------------------------------
  var News = require('../api/news.js');
  app.post('/addnews', News.addnews);
@@ -147,6 +168,14 @@ module.exports = function(app) {
  //---------------------------Defining Routes For Leave-----------------------------------------------
  var leave = require('../api/leave.js');
  app.post('/applyleave',leave.leaveadd );
+
+
+
+
+ //---------------------Defining Routes for Notifications-------------------------------------------
+ var notification = require('../api/notification.js');
+ app.post('/addnotification',notification.addnotification);
+
 
    
     
