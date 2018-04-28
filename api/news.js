@@ -30,7 +30,7 @@ var storage = multer.diskStorage({
             title   : req.body.mytitle,
             subtitle: req.body.mysubtitle,
             description: req.body.mydescription,
-            date: req.body.myDate,
+            date: req.body.mdate,
         imgurl:req.file.path
       
         

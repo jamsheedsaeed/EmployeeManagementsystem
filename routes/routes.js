@@ -103,9 +103,10 @@ var sessionChecker = (req, res, next) => {
     });
 
     
-    app.get("/events", sessionChecker,function(req,res){
+    app.get("/events",function(req,res){
       res.render("events");
     });
+    
     app.get("/viewemp",function(req,res){
       res.render("viewemp");
     });
