@@ -6,10 +6,15 @@ const colors = require('colors');
 var debug = require('debug')('05-express-first-app:server');
 //var router = express.Router();
 var mongodb = require("mongodb");
+var cookieParser = require('cookie-parser');
+var User = require('./models/user');
 var MongoClient = require('mongodb').MongoClient;
 mongoose = require('mongoose');
+var path = require('path');
 //----------------------------- Database Connection -------------------------------------------
 var configDB = require('./config/database.js');
+var session = require('express-session');
+
 mongoose.connect(configDB.url, { useMongoClient: true, /* other options */ })
 require("./routes/routes")(app); 
 
@@ -39,6 +44,37 @@ LocalStrategy = require("passport-local"),
 passportLocalMongoose = require("passport-local-mongoose");
 app.set('view engine', 'ejs');
 
+app.use(express.static(path.join(__dirname,'layout')));
+app.use(express.static(path.join(__dirname,'public')));
+
+
+
+
+app.use(session({
+    key: 'user_sid',
+    secret: 'somerandonstuffs',
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+        expires: 600000
+    }
+}));
+
+app.use((req, res, next) => {
+    if (req.cookies.user_sid && !req.session.user) {
+        res.clearCookie('user_sid');        
+    }
+    next();
+});
+
+var sessionChecker = (req, res, next) => {
+    if (req.session.user && req.cookies.user_sid) {
+        res.redirect('/secret');
+    } else {
+        next();
+    }    
+};
+app.use('/uploads', express.static('uploads'));
 var debug = require('debug')('05-express-first-app:server');
 var http = require('http');
 

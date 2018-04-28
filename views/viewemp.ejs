@@ -2,9 +2,9 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<meta http-equiv="Content-Security-Policy" content="block-all-mixed-content" />
+<meta http-equiv="Content-Security-Policy" content="block-all-mixed-content" />-->
 
 <meta charset="UTF-8">
 <title>view employee</title>
@@ -14,7 +14,6 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
 
 <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.12.4.min.js"></script>
-
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 
@@ -162,7 +161,7 @@ $(document).ready(function(){
        </div> 
     
 <table id="emptable" class="responstable" style="width:100%;  margin-right:50px;" >
-  <thead>
+
     <tr  id = "rowid" >
     <th  width="5%" name="empname" id="empname">Employee Name</th>
     <th width="5%" name="empemail" id="empemail">Email</th>
@@ -175,7 +174,6 @@ $(document).ready(function(){
     <th width="5%">Action Update</th>
 
   </tr>
-</thead>
 <tbody id="customer-rows">
  
 </tbody>
@@ -295,17 +293,21 @@ $(document).ready(function(){
 
 <script>
 
+     
+$('#emptable tbody').on('click','td a.editcustomer', function editcustomer(event) {
 
-$('#emptable').on('click','a.edit-customer', function(e) {
+  event.preventDefault();
 
-  var dmJSON = "https://employeemanagementsystem.herokuapp.com/employee";
-  var employee_id = $(this).attr("rel"); 
-  data:{employee_id:employee_id}
- $.getJSON( dmJSON, function(data) {
+  var dmJSON = "http://localhost:3000/employee";
+  var employee_id = $(this).attr('rel'); 
+ data = employee_id;
+
+ jQuery.getJSON( dmJSON, function(data) {
   console.log(data);
     var idx=1;
     $.each(data, function(i, f) {
-      var idx = $(this).data('id');
+    // f= data;
+      var idx = $(this).data('rel');
         idx++;
        // var $popup ="<popup id='"+idx+"' class='mystyles1'><tr>" + "<p>" + f.employeename + "</p></tr>" + "<tr><p>" + f.dob + "</p></tr>" + "<tr><p>" + f.empemail + "</p></tr>" + "<tr><p> " + f.username+ "</p></tr>" + "&nbsp;&nbsp;&nbsp;</popup>"
        // $("#popup-container").append($popup)
@@ -358,13 +360,13 @@ function populateTable(){
         console.log('Unable to put data'); 
 
        
-                $.getJSON("https://employeemanagementsystem.herokuapp.com/employee", function(data){
+                $.getJSON("http://localhost:3000/employee", function(data){
                     console.log(data);
            
                   $.each(data, function(i, field){
                    
                        $('#emptable').append('<tr  ><td>'+field.employeename+'</td><td>'+field.Email+
-                        '</td><td>'+field.phone+'</td><td>'+field.address+'</td><td>'+field.department+'</td><td>'+field.dob+'</td><td><a href="#" rel="'+this._id+'" class="edit-customer btn btn-success">View</a> </td><td><a href="#" id="btn1" class="deleteEmployee btn btn-danger "   rel="' + this._id + '" >delete</a></td> <td><input type="button" name="edit" value="Edit" rel="' + this._id + '" class="btn btn-info edit_data" /></td> </tr>' 
+                        '</td><td>'+field.phone+'</td><td>'+field.address+'</td><td>'+field.department+'</td><td>'+field.dob+'</td><td><a href="#" id="btn1" class="editcustomer btn btn-danger "   rel="' + this._id + '" >View</a></td> <td><a href="#" id="btn1" class="deleteEmployee btn btn-danger "   rel="' + this._id + '" >delete</a></td> <td><input type="button" name="edit" value="Edit" rel="' + this._id + '" class="btn btn-info edit_data" /></td> </tr>' 
             
                     );
 

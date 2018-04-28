@@ -12,7 +12,7 @@ var router = express.Router();
 var http = require('http');
 bodyParser = require("body-parser");
 var mongodb = require("mongodb");
-
+var session = require('express-session');
 passportLocalMongoose = require("passport-local-mongoose");
 var dbHost = "mongodb://jamsheed saeed:malik1234@ds161574.mlab.com:61574/new";
 var url = "mongodb://jamsheed saeed:malik1234@ds161574.mlab.com:61574/new";
@@ -84,6 +84,15 @@ module.exports = function(app) {
     }), function(req, res) {
     
     });*/
+    // middleware function to check for logged-in users
+var sessionChecker = (req, res, next) => {
+  if (req.session.user && req.cookies.user_sid) {
+      res.redirect('/dashboard');
+  } else {
+      next();
+  }    
+};
+
     
     app.get("/logout",function(req, res) {
     req.logout();
@@ -92,7 +101,9 @@ module.exports = function(app) {
     app.get("/about",function(req,res){
       res.render("about");
     });
-    app.get("/events",function(req,res){
+
+    
+    app.get("/events", sessionChecker,function(req,res){
       res.render("events");
     });
     app.get("/viewemp",function(req,res){
@@ -149,8 +160,11 @@ module.exports = function(app) {
     //---------------------------Defining Routes For Events-----------------------------------------------
      var events = require('../api/events.js');
      app.post('/eventadd', events.eventadd);
-    // app.get('/viewevent', events.getAll);
+   app.get('/viewevent', events.getAll);
     // app.delete('/eventdelete/:id', events.delete);
+
+
+    app.use('/uploads', express.static('uploads'));
 
     
     // var eventss = require('../api/eventss.js');
@@ -183,6 +197,12 @@ module.exports = function(app) {
     app.use("*",function(req,res){
       res.sendFile(path + "404.html");
     });
+
+
+
+
+
+
 
 
 

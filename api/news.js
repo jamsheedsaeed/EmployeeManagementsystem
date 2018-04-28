@@ -9,14 +9,13 @@ var app = exprss();
 //function used to post some data in database
 
 var storage = multer.diskStorage({
-    destination: function (req, file, cb) {
-      cb(null, './uploads')
+    destination: function (req, file, callback) {
+      callback(null, './uploads')
     },
-    filename: function (req, file, cb) {
-      cb(null, file.fieldname + '-' + Date.now())
+    filename: function (req, file, callback) {
+      callback(null, Date.now() + file.originalname)
     }
   })
-  var upload = multer({ storage: storage })
 
 
   exports.addnews = function(req,res){

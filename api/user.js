@@ -1,5 +1,6 @@
 const exprss = require('express');
 const User = require('../models/user.js');
+var session = require('express-session');
 exports.login = function(req, res){
     var username = req.body.username;
     var password = req.body.password;
@@ -13,6 +14,7 @@ exports.login = function(req, res){
            res.send('invalid username or password');
         }
         if(user){
+            req.session.user = user;
             console.log('Successfully login');
         res.render('secret');
     }
@@ -22,6 +24,7 @@ exports.login = function(req, res){
     });
 
 }
+
 
 
 exports.adminregister= function(req, res){

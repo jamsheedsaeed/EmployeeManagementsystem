@@ -5,16 +5,24 @@ var path = require('path');
 const Event = require('../models/events.js');
  
 var app = express();
-var storage = multer.diskStorage({
+/*var storage = multer.diskStorage({
     destination: function (req, file, cb) {
       cb(null, './uploads')
     },
     filename: function (req, file, cb) {
-      cb(null, file.fieldname + '-' + Date.now())
+      cb(null, Date.now() + file.originalname()
     }
   })
   var upload = multer({ storage: storage })
-
+*/
+var storage = multer.diskStorage({
+    destination: function (req, file, callback) {
+      callback(null, './uploads')
+    },
+    filename: function (req, file, callback) {
+      callback(null, Date.now() + file.originalname)
+    }
+  })
 exports.eventadd = function(req,res){
     var upload = multer({ storage: storage }).single('userFile')
     upload(req, res, function (err) {
