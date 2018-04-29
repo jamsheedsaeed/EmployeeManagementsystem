@@ -75,6 +75,9 @@ module.exports = function(app) {
   app.get("/",function(req,res){
     res.sendFile(path + "index.html");
   });
+
+
+  
   
     //login logic
     //middleware
@@ -106,7 +109,7 @@ var sessionChecker = (req, res, next) => {
     app.get("/events",function(req,res){
       res.render("events");
     });
-    
+
     app.get("/viewemp",function(req,res){
       res.render("viewemp");
     });
@@ -133,6 +136,15 @@ var sessionChecker = (req, res, next) => {
     app.get("/register",function(req,res){
       res.render("register");
     });
+
+    app.get("/eventdata",function(req,res){
+      res.render("viewevents");
+    });
+    
+
+    app.get("/viewnotifications",function(req,res){
+      res.render("viewnotification");
+    });
 /*
     function isLoggedIn(req,res,next) {
       if(req.isAuthenticated()){
@@ -147,7 +159,8 @@ var sessionChecker = (req, res, next) => {
     app.post('/empregister', employee.empregister);
     app.get('/employee', employee.getAll);
      app.delete('/employee/:id', employee.delete);
-     app.post('/editemployee',employee.edit);
+     app.post('/edit', employee.edit);
+    // app.post('/editemployee',employee.edit);
     //app.delete('/tasks/:id',employee.delete)
 
 
@@ -162,7 +175,7 @@ var sessionChecker = (req, res, next) => {
      var events = require('../api/events.js');
      app.post('/eventadd', events.eventadd);
    app.get('/viewevent', events.getAll);
-    // app.delete('/eventdelete/:id', events.delete);
+     app.delete('/eventdelete/:id', events.delete);
 
 
     app.use('/uploads', express.static('uploads'));
@@ -190,7 +203,8 @@ var sessionChecker = (req, res, next) => {
  //---------------------Defining Routes for Notifications-------------------------------------------
  var notification = require('../api/notification.js');
  app.post('/addnotification',notification.addnotification);
-
+app.get('/getnotification',notification.getAll);
+app.delete('/notificationdel/:id', notification.delete);
 
    
     

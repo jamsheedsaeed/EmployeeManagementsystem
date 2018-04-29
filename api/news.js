@@ -21,6 +21,8 @@ var storage = multer.diskStorage({
   exports.addnews = function(req,res){
     var upload = multer({ storage: storage }).single('userFile')
     upload(req, res, function (err) {
+
+    
         console.log("file Name",req.file)
         console.log("Request: ",req.body);
         console.log(req.body);
@@ -36,7 +38,7 @@ var storage = multer.diskStorage({
         
         
     });
-
+        
     newNews.save((err, News)=>{
         if(err){
             res.json({msg: 'Failed to add the notifications'});
@@ -47,10 +49,9 @@ var storage = multer.diskStorage({
         }
     });
     
-    })
-}
 
-
+});
+  }
 
   exports.getAll = function (req, res) {
     News

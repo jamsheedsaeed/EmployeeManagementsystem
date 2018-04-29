@@ -175,6 +175,8 @@ body{
   }
   .responstable tr {
     border: 1px solid #D9E4E6;
+   counter-increment: rowNumber;
+  
   }
   .responstable tr:nth-child(odd) {
     background-color: #EAF3F3;
@@ -232,6 +234,46 @@ body{
       padding: 1em;
     }
   }
+  .css-serial {
+    counter-reset: serial-number; /* Set the serial number counter to 0 */
+   }
+   .css-serial td:first-child:before {
+    counter-increment: serial-number; /* Increment the serial number counter */
+    content: counter(serial-number); /* Display the counter */
+   }
+   
+   /*///////////////////// CSS For Paging  ////////////////////////// */
+
+.page{
+  padding-bottom: 1%;
+  padding-top: 1%;
+}
+div.page {
+  margin-left: auto;
+  margin-right: auto;
+  width: 9em
+  
+}
+  .pagination a {
+      color: black;
+      float: left;
+      padding: 8px 16px;
+      text-decoration: none;
+      transition: background-color .3s;
+      position: center;
+      padding-bottom: 1%;
+      padding-top: 1%;
+      
+  }
+  
+  .pagination a.active {
+      background-color: dodgerblue;
+      color: white;
+      position: center;
+  }
+  
+  .pagination a:hover:not(.active) {background-color: #ddd;
+    position: center;}
   
   body {
     padding: 0 2em;

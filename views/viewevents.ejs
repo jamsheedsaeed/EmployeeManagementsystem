@@ -67,7 +67,7 @@
 				</ul>
 
       </div>
-      <div class="knockout">News Data</div>
+      <div class="knockout">Events Data</div>
 <br/>
 
 </html>
@@ -164,7 +164,7 @@ $(document).ready(function(){
 <table id="newstable" class="responstable css-serial" style="width:100%;  margin-right:50px;" >
  
     <tr  id = "rowid" >
-    <th  width="2%" name="s.no" id="s.no">Sr. No</th>
+   <th  width="2%" name="s.no" id="s.no">Sr. No</th>
     <th  width="5%" name="title" id="title">Title</th>
     <th width="5%" name="subtitle" id="subtitle">SubTitle</th>
     <th width="5%" name="description" id="description">Description</th>
@@ -208,9 +208,9 @@ $(document).ready(function(){
 </div>  
 
 
- <!-- Script for Paging -->
+<!-- Script for Paging -->
 
- <script>
+<script>
     function pagination(){
         var req_num_row=10;
         var $tr=jQuery('tbody th');
@@ -266,7 +266,7 @@ $(document).ready(function(){
   
     event.preventDefault();
   
-    var dmJSON = "http://localhost:3000/viewnews";
+    var dmJSON = "http://localhost:3000/viewevent";
     var employee_id = $(this).attr('rel'); 
     data = {employee_id:employee_id}
   
@@ -359,7 +359,7 @@ function populateTable(){
         console.log('Unable to put data'); 
 
        
-                $.getJSON("http://localhost:3000/viewnews", function(data){
+                $.getJSON("http://localhost:3000/viewevent", function(data){
                     console.log(data);
            
                   $.each(data, function(i, field){
@@ -405,7 +405,7 @@ $('#newstable tbody').on('click', 'td a.deleteEmployee', function deleteEmployee
         $.ajax({
             method:'DELETE',
             type: 'DELETE',
-            url: '/deletenews/'  + $(this).attr('rel'),
+            url: '/eventdelete/'  + $(this).attr('rel'),
 
         }).done(function( response) {
           

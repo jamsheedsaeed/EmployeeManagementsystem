@@ -66,29 +66,52 @@ exports.getAll = function (req, res) {
     });
  }
 
-
  exports.edit=function(req,res){
-    if(req.params.id==undefined){
+    if(req.params.employee_id==undefined){
       res.status(404).send({
         message:'one or more perameters missing'
       });
     }else{
-     Employee.findOne({_id:req.params.id}).exec(function(error,Employee){
-      //  console.log(Employee);
-      Employee.employeename = req.body.employeename?req.body.field1:
-      Employee.fname=req.body.fname?req.body.field2:
-      Employee.Email=req.body.Email?req.body.field3:
-      Employee.phone=req.body.phone?req.body.field4:
-      Employee.gender=req.body.gender?req.body.field5:
-      Employee.dob=req.body.dob?req.body.field6:     
+      Employee.findOne({_id:req.params.employee_id}).exec(function(error,Employee){
+      //  console.log(Routes);
+      Employee.employeename=req.body.employeename?req.body.employeename:Employee.field1;
+      Employee.fname=req.body.fname?req.body.fname:Employee.field2;
+      Employee.Email=req.body.Email?req.body.Email:Employee.field3;     
+      Employee.phone=req.body.phone?req.body.phone:Employee.field4;
+      Employee.gender=req.body.gender?req.body.gender:Employee.field5;      
       Employee.save(function(error,Employee){
+          console.log("error at end");
           if(error){
             res.status('500').send({message:'error found'})
           }else{
             res.status('202').send({message:'updated'})
+            res.render('viewemp');
           }
         });
       })
    }
   }
- 
+
+/*
+ exports.edit=function(req,res){
+  
+     Employee.findOne({_id:req.params.id}).exec(function(error,Employee){
+      //  console.log(Employee);
+      Employee.employeename = req.body.field1;
+      Employee.fname=req.body.field2;
+      Employee.Email=req.body.field3;
+      Employee.phone=req.body.field4;
+      Employee.gender=req.body.field5;
+     
+      Employee.save(function(error,Employee){
+          if(error){
+            res.status('500').send({message:'error found'})
+          }else{
+            res.render('viewemp');
+          }
+        });
+      })
+      */
+   
+
+

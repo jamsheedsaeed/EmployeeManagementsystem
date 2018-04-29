@@ -53,21 +53,21 @@
                     <i class="fa fa-caret-down"></i>
                     </button>
                     <div class="dropdown-content">
-                      <a class="active" href="/viewemp">Employees Data</a>
-                      <a  href="/newstable">News Data</a>
-                      <a href="/eventdata">Events Data</a>
-                      <a href="/page/viewnews">Leaves Details</a>
-                      <a href="/viewnotifications">Notifications Details</a>
-                     
+                        <a class="active" href="/viewemp">Employees Data</a>
+                        <a  href="/newstable">News Data</a>
+                        <a href="/eventdata">Events Data</a>
+                        <a href="/page/viewnews">Leaves Details</a>
+                        <a href="/viewnotifications">Notifications Details</a>
+                       
 
-                  </div>
+                    </div>
 					</div>
 
 
 				</ul>
 
       </div>
-      <div class="knockout">News Data</div>
+      <div class="knockout">Notifications Data</div>
 <br/>
 
 </html>
@@ -161,15 +161,13 @@ $(document).ready(function(){
           </div>
        </div> 
     
-<table id="newstable" class="responstable css-serial" style="width:100%;  margin-right:50px;" >
+<table id="newstable" class="responstable css-serial " style="width:100%;  margin-right:50px;" >
  
     <tr  id = "rowid" >
-    <th  width="2%" name="s.no" id="s.no">Sr. No</th>
+    <th  width="5%" name="s.no" id="s.no">Sr. No</th>
     <th  width="5%" name="title" id="title">Title</th>
-    <th width="5%" name="subtitle" id="subtitle">SubTitle</th>
     <th width="5%" name="description" id="description">Description</th>
     <th width="5%" name="date" id="date">Date</th>
-    <th width="5%" name="imageurl" id="imageurl">Image Url</th>
     
     <th width="5%">Action Delete</th>
     <th width="5%">Action Update</th>
@@ -190,7 +188,6 @@ $(document).ready(function(){
         <a href="#">&raquo;</a>
       </div>
     </div>
-        
  <div id="dataModal" class="modal fade">  
   <div class="modal-dialog">  
        <div class="modal-content">  
@@ -207,10 +204,87 @@ $(document).ready(function(){
   </div>  
 </div>  
 
+<script>
 
- <!-- Script for Paging -->
+     
+  $('#newstable tbody').on('click','td a.updatenews', function updatecustomer(event) {
+  
+    event.preventDefault();
+  
+    var dmJSON = "http://localhost:3000/getnotification";
+    var employee_id = $(this).attr('rel'); 
+    data = {employee_id:employee_id}
+  
+   jQuery.getJSON( dmJSON, function(data) {
+    console.log(data);
+      var idx=1;
+      $.each(data, function(i, f) {
+  
+      if(f._id == employee_id){
+         $('#field1').val(f.title)
+         $('#field2').val(f.description)
+         $('#field4').val(f.date)
 
- <script>
+         $('#employee_id').val(f._id);
+      
+  
+         $('#add_data_Modal1').modal('show'); 
+          
+      }
+      });
+   });
+  
+  
+  
+   
+  });
+  </script>
+
+
+ <!-- Modal For Editing -->
+ <div id="add_data_Modal1" class="modal fade ">  
+  <div class="modal-dialog">  
+       <div class="modal-content">  
+            <div class="modal-header">  
+                 <button type="button" class="close" data-dismiss="modal">&times;</button>  
+               <center> <h4 class="modal-title">News Data</h4>  </center> 
+            </div>  
+            <div class="modal-body">  
+                 <form action="/edit" method="POST">  
+
+                    <div class="modal-header">  
+                        <center><h4 class="modal-title">News</h4> </center> 
+                         </div>
+
+
+                      <label>Title</label>  
+                      <input  name="field1" id="field1" class="form-control" />  
+                      <br />  
+
+                      <label>Description</label>  
+                      <input type="text" name="field2" id="field2" class="form-control"  />  
+                      <br />  
+
+                     
+                      <label>Date</label>  
+                      <input type="text" name="field4" id="field4" class="form-control"  />  
+                      <br />  
+
+            
+
+                      <input type="hidden" name="employee_id" id="employee_id" />  
+                      <input type="submit" name="insert" id="'+this._id+''" value="Update" class="btn btn-success" />  
+                 </form>  
+            </div>  
+            <div class="modal-footer">  
+                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
+            </div>  
+       </div>  
+  </div>  
+</div> 
+<!-- Script for Paging -->
+
+<script>
     function pagination(){
         var req_num_row=10;
         var $tr=jQuery('tbody th');
@@ -259,94 +333,6 @@ $(document).ready(function(){
     
     </script>
 
-<script>
-
-     
-  $('#newstable tbody').on('click','td a.updatenews', function updatecustomer(event) {
-  
-    event.preventDefault();
-  
-    var dmJSON = "http://localhost:3000/viewnews";
-    var employee_id = $(this).attr('rel'); 
-    data = {employee_id:employee_id}
-  
-   jQuery.getJSON( dmJSON, function(data) {
-    console.log(data);
-      var idx=1;
-      $.each(data, function(i, f) {
-  
-      if(f._id == employee_id){
-         $('#field1').val(f.title)
-         $('#field2').val(f.subtitle)
-         $('#field3').val(f.description)
-         $('#field4').val(f.date)
-         $('#field5').val(f.imgurl)
-         $('#employee_id').val(f._id);
-      
-  
-         $('#add_data_Modal1').modal('show'); 
-          
-      }
-      });
-   });
-  
-  
-  
-   
-  });
-  </script>
-
-
- <!-- Modal For Editing -->
- <div id="add_data_Modal1" class="modal fade ">  
-  <div class="modal-dialog">  
-       <div class="modal-content">  
-            <div class="modal-header">  
-                 <button type="button" class="close" data-dismiss="modal">&times;</button>  
-               <center> <h4 class="modal-title">News Data</h4>  </center> 
-            </div>  
-            <div class="modal-body">  
-                 <form action="/edit" method="POST">  
-
-                    <div class="modal-header">  
-                        <center><h4 class="modal-title">News</h4> </center> 
-                         </div>
-
-
-                      <label>Title</label>  
-                      <input  name="field1" id="field1" class="form-control" />  
-                      <br />  
-
-                      <label>Subtitle</label>  
-                      <input  name="field2" id="field2" class="form-control" />  
-                      <br /> 
-
-                      <label>Description</label>  
-                      <input type="text" name="field3" id="field3" class="form-control"  />  
-                      <br />  
-
-                      <label>Date</label>  
-                      <input type="text" name="field4" id="field4" class="form-control" />  
-                      <br />  
-
-                      <label>Image</label>  
-                      <input type="text" name="field5" id="field5" class="form-control"  />  
-                      <br />  
-
-            
-
-                      <input type="hidden" name="employee_id" id="employee_id" />  
-                      <input type="submit" name="insert" id="'+this._id+''" value="Update" class="btn btn-success" />  
-                 </form>  
-            </div>  
-            <div class="modal-footer">  
-                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
-            </div>  
-       </div>  
-  </div>  
-</div> 
-
-
 
 
     <script>
@@ -359,13 +345,12 @@ function populateTable(){
         console.log('Unable to put data'); 
 
        
-                $.getJSON("http://localhost:3000/viewnews", function(data){
+                $.getJSON("http://localhost:3000/getnotification", function(data){
                     console.log(data);
            
                   $.each(data, function(i, field){
                    
-                       $('#newstable').append('<tr  ><td></td><td>'+field.title+'</td><td>'+field.subtitle+
-                        '</td><td>'+field.description+'</td><td>'+field.date+'</td><td>'+field.imgurl+'</td><td><a href="#" id="btn1" class="deleteEmployee btn btn-danger "   rel="' + this._id + '" >delete</a></td> <td><a href="#" id="btn1" class="updatenews btn btn-info "   rel="' + this._id + '" >Edit</a></td> </tr>' 
+                       $('#newstable').append('<tr  ><td></td><td>'+field.title+'</td><td>'+field.description+'</td><td>'+field.date+'</td><td><a href="#" id="btn1" class="deleteEmployee btn btn-danger "   rel="' + this._id + '" >delete</a></td> <td><a href="#" id="btn1" class="updatenews btn btn-info "   rel="' + this._id + '" >Edit</a></td> </tr>' 
             
                     );
 
@@ -386,7 +371,7 @@ var request = {
         template: {  
               name: 'Employee.ejs'  
              },   
-                   data: "http://localhost:3000/viewnews"
+                   data: "http://localhost:3000/getnotification'"
                   
         };  
 jsreport.render($("#employees"), request);   
@@ -405,7 +390,7 @@ $('#newstable tbody').on('click', 'td a.deleteEmployee', function deleteEmployee
         $.ajax({
             method:'DELETE',
             type: 'DELETE',
-            url: '/deletenews/'  + $(this).attr('rel'),
+            url: '/notificationdel/'  + $(this).attr('rel'),
 
         }).done(function( response) {
           
@@ -467,7 +452,7 @@ $(document).on('click', '.edit_data', function(){
   trEdit = $(this).closest('tr');
   var type = $(this).closest('tr').children('td.username').text();
   var empemail = $(trEdit).find('ed:eq(1)').text;
-  $.getJSON("http://localhost:3000/employee", function(data){
+  $.getJSON("http://localhost:3000/getnotification'", function(data){
     $.each(data, function(i, field){
 
       if(field._id == 'rel'){
