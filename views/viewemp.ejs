@@ -292,7 +292,7 @@ $(document).ready(function(){
   
     event.preventDefault();
   
-    var dmJSON = "http://localhost:3000/employee";
+    var dmJSON = "https://employeemanagementsystem.herokuapp.com/employee";
     var employee_id = $(this).attr('rel'); 
     data = {employee_id:employee_id}
   
@@ -485,7 +485,7 @@ $('#emptable tbody').on('click','td a.editcustomer', function editcustomer(event
 
   event.preventDefault();
 
-  var dmJSON = "http://localhost:3000/employee";
+  var dmJSON = "https://employeemanagementsystem.herokuapp.com/employee";
   var employee_id = $(this).attr('rel'); 
   data = {employee_id:employee_id}
 
@@ -545,7 +545,7 @@ function populateTable(){
         console.log('Unable to put data'); 
 
        
-                $.getJSON("http://localhost:3000/employee", function(data){
+                $.getJSON("https://employeemanagementsystem.herokuapp.com/employee", function(data){
                     console.log(data);
            
                   $.each(data, function(i, field){

@@ -266,7 +266,7 @@ $(document).ready(function(){
   
     event.preventDefault();
   
-    var dmJSON = "http://localhost:3000/viewnews";
+    var dmJSON = "https://employeemanagementsystem.herokuapp.com/viewnews";
     var employee_id = $(this).attr('rel'); 
     data = {employee_id:employee_id}
   
@@ -390,7 +390,7 @@ function populateTable(){
         console.log('Unable to put data'); 
 
        
-                $.getJSON("http://localhost:3000/viewnews", function(data){
+                $.getJSON("https://employeemanagementsystem.herokuapp.com/viewnews", function(data){
                     console.log(data);
            
                   $.each(data, function(i, field){
