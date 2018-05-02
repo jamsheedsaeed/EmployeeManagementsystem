@@ -66,30 +66,37 @@ exports.getAll = function (req, res) {
     });
  }
 
- exports.edit=function(req,res){
-    if(req.params.employee_id==undefined){
-      res.status(404).send({
-        message:'one or more perameters missing'
-      });
-    }else{
-      Employee.findOne({_id:req.params.employee_id}).exec(function(error,Employee){
-      //  console.log(Routes);
-      Employee.employeename=req.body.employeename?req.body.employeename:Employee.field1;
-      Employee.fname=req.body.fname?req.body.fname:Employee.field2;
-      Employee.Email=req.body.Email?req.body.Email:Employee.field3;     
-      Employee.phone=req.body.phone?req.body.phone:Employee.field4;
-      Employee.gender=req.body.gender?req.body.gender:Employee.field5;      
-      Employee.save(function(error,Employee){
-          console.log("error at end");
-          if(error){
-            res.status('500').send({message:'error found'})
-          }else{
-            res.status('202').send({message:'updated'})
-            res.render('viewemp');
-          }
-        });
-      })
-   }
+ 
+exports.editemployee = function(req,res){
+  
+    Employee.findOne({_id:req.body.id}).exec(function(err,Employee){
+        if(err){
+            console.log(Employee);
+            res.status('500').send({message:'error'})
+           
+        }
+        else{
+            console.log(Employee);
+
+            Employee.employeename = req.body.employeename;
+            Employee.fname = req.body.fname;
+            Employee.Email = req.body.Email;
+            Employee.phone = req.body.phone;
+            Employee.gender = req.body.gender;
+           
+
+            Employee.save(function(err,result){
+                if(err){
+                    res.status('500').send({message:'error found'})
+                }
+                else{
+          
+                    console.log(result);
+                    res.render("viewemp");
+                }
+            });
+        }
+    })
   }
 
 /*

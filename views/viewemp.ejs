@@ -206,7 +206,7 @@ $(document).ready(function(){
                <center> <h4 class="modal-title">Employee Details</h4>  </center> 
             </div>  
             <div class="modal-body">  
-                 <form action="/edit" method="POST">  
+                 <form method="POST">  
 
                     <div class="modal-header">  
                         <center><h4 class="modal-title">Personal Details</h4> </center> 
@@ -233,7 +233,7 @@ $(document).ready(function(){
 
 
                       <input type="hidden" name="employee_id" id="employee_id" />  
-                      <input type="submit" name="insert" id="'+this._id+''" value="Update" class="btn btn-success" />  
+                      <button id="button_1" value="val_1" name="but1">Update</button>
                  </form>  
             </div>  
             <div class="modal-footer">  
@@ -242,6 +242,47 @@ $(document).ready(function(){
        </div>  
   </div>  
 </div> 
+
+<script>
+    $(document).ready(function() {
+      $("#button_1").click(function(e) {
+    e.preventDefault();
+    var employeename = $("#field1").val();
+    var fname = $("#field2").val();
+    var Email = $("#field3").val();
+    var phone = $("#field4").val();
+    var gender = $("#field5").val();
+    var id = $("#employee_id").val();
+    
+    console.log(title);
+    var dataForm = 'employeename=' + employeename + '&fname=' + fname + '&Email=' +Email+ '&phone=' + phone + '&gender=' + gender +   '&id=' + id;
+    
+    $.ajax({
+        type: 'POST',
+        url: '/updateemployee/'+id,
+        data: dataForm,
+        success: function(html){
+            if(html == "success"){
+               // $('#emptable').dataTable().reload();
+                $('#add_data_Modal1').modal('hide');
+                $('#add_data_Modal1').modal('toggle');
+                res.render('viewevents');
+            }
+        }
+        });
+    
+    });
+    });
+    </script>
+
+
+
+
+
+
+
+
+
 
 
 <script>

@@ -12,7 +12,7 @@ var router = express.Router();
 var http = require('http');
 bodyParser = require("body-parser");
 var mongodb = require("mongodb");
-var session = require('express-session');
+//var session = require('express-session');
 passportLocalMongoose = require("passport-local-mongoose");
 var dbHost = "mongodb://jamsheed saeed:malik1234@ds161574.mlab.com:61574/new";
 var url = "mongodb://jamsheed saeed:malik1234@ds161574.mlab.com:61574/new";
@@ -159,7 +159,12 @@ var sessionChecker = (req, res, next) => {
     app.post('/empregister', employee.empregister);
     app.get('/employee', employee.getAll);
      app.delete('/employee/:id', employee.delete);
-     app.post('/edit', employee.edit);
+     app.post('/updateemployee/:id', employee.editemployee);
+
+
+
+
+
     // app.post('/editemployee',employee.edit);
     //app.delete('/tasks/:id',employee.delete)
 
@@ -176,7 +181,8 @@ var sessionChecker = (req, res, next) => {
      app.post('/eventadd', events.eventadd);
    app.get('/viewevent', events.getAll);
      app.delete('/eventdelete/:id', events.delete);
-
+  //app.post('/editevent',events.editEvent);
+  app.post('/edit/:id',events.editEvent);
 
     app.use('/uploads', express.static('uploads'));
 
@@ -191,6 +197,9 @@ var sessionChecker = (req, res, next) => {
  app.post('/addnews', News.addnews);
  app.get('/viewnews', News.getAll);
  app.delete('/deletenews/:id', News.delete);
+ app.post('/updatenews/:id',News.editNews);
+
+
 
   
  //---------------------------Defining Routes For Leave-----------------------------------------------

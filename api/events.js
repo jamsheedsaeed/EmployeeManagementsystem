@@ -23,6 +23,12 @@ var storage = multer.diskStorage({
       callback(null, Date.now() + file.originalname)
     }
   })
+
+
+
+
+
+
 exports.eventadd = function(req,res){
     var upload = multer({ storage: storage }).single('userFile')
     upload(req, res, function (err) {
@@ -45,6 +51,7 @@ exports.eventadd = function(req,res){
         }
         else{
          //   res.json({msg: 'notifications is added successfully'});
+         
          res.render("events",Event);
         }
     });
@@ -81,3 +88,33 @@ exports.delete = function(req, res, next){
         }
     });
 }
+
+
+
+exports.editEvent = function(req,res){
+  
+    Event.findOne({_id:req.body.id}).exec(function(err,Event){
+        if(err){
+            console.log(Event);
+            res.status('500').send({message:'error'})
+           
+        }
+        else{
+            console.log(Event);
+            Event.title=req.body.title;
+            Event.subtitle=req.body.subtitle;
+            Event.description=req.body.description;
+            Event.date=req.body.date;
+            Event.save(function(err,result){
+                if(err){
+                    res.status('500').send({message:'error found'})
+                }
+                else{
+          
+                    console.log(result);
+                    res.render("viewevents");
+                }
+            });
+        }
+    })
+  }

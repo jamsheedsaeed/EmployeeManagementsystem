@@ -79,3 +79,32 @@ exports.delete = function(req, res, next){
         }
     });
 }
+
+
+exports.editNews = function(req,res){
+  
+    News.findOne({_id:req.body.id}).exec(function(err,News){
+        if(err){
+            console.log(News);
+            res.status('500').send({message:'error'})
+           
+        }
+        else{
+            console.log(News);
+            News.title=req.body.title;
+            News.subtitle=req.body.subtitle;
+            News.description=req.body.description;
+            News.date=req.body.date;
+            News.save(function(err,result){
+                if(err){
+                    res.status('500').send({message:'error found'})
+                }
+                else{
+          
+                    console.log(result);
+                    res.render("newstable");
+                }
+            });
+        }
+    })
+  }

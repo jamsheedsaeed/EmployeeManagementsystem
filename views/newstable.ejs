@@ -280,7 +280,7 @@ $(document).ready(function(){
          $('#field2').val(f.subtitle)
          $('#field3').val(f.description)
          $('#field4').val(f.date)
-         $('#field5').val(f.imgurl)
+      
          $('#employee_id').val(f._id);
       
   
@@ -306,7 +306,7 @@ $(document).ready(function(){
                <center> <h4 class="modal-title">News Data</h4>  </center> 
             </div>  
             <div class="modal-body">  
-                 <form action="/edit" method="POST">  
+                 <form method="POST">  
 
                     <div class="modal-header">  
                         <center><h4 class="modal-title">News</h4> </center> 
@@ -329,14 +329,10 @@ $(document).ready(function(){
                       <input type="text" name="field4" id="field4" class="form-control" />  
                       <br />  
 
-                      <label>Image</label>  
-                      <input type="text" name="field5" id="field5" class="form-control"  />  
-                      <br />  
-
-            
+                
 
                       <input type="hidden" name="employee_id" id="employee_id" />  
-                      <input type="submit" name="insert" id="'+this._id+''" value="Update" class="btn btn-success" />  
+                      <button id="button_1" value="val_1" name="but1">Update</button>
                  </form>  
             </div>  
             <div class="modal-footer">  
@@ -345,6 +341,41 @@ $(document).ready(function(){
        </div>  
   </div>  
 </div> 
+
+
+
+<script>
+    $(document).ready(function() {
+      $("#button_1").click(function(e) {
+    e.preventDefault();
+    var title = $("#field1").val();
+    var subtitle = $("#field2").val();
+    var description = $("#field3").val();
+    var date = $("#field4").val();
+    var id = $("#employee_id").val();
+    
+    console.log(title);
+    var dataForm = 'title=' + title + '&subtitle=' + subtitle + '&description=' +description+ '&date=' + date +  '&id=' + id;
+    
+    $.ajax({
+        type: 'POST',
+        url: '/updatenews/'+id,
+        data: dataForm,
+        success: function(html){
+            if(html == "success"){
+               // $('#emptable').dataTable().reload();
+                $('#add_data_Modal1').modal('hide');
+                $('#add_data_Modal1').modal('toggle');
+                res.render('viewevents');
+            }
+        }
+        });
+    
+    });
+    });
+    </script>
+
+
 
 
 
