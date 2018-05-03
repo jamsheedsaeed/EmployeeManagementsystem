@@ -145,6 +145,14 @@ var sessionChecker = (req, res, next) => {
     app.get("/viewnotifications",function(req,res){
       res.render("viewnotification");
     });
+
+
+    
+
+    app.get("/viewleave",function(req,res){
+      res.render("viewleave");
+    });
+
 /*
     function isLoggedIn(req,res,next) {
       if(req.isAuthenticated()){
@@ -205,6 +213,7 @@ var sessionChecker = (req, res, next) => {
  //---------------------------Defining Routes For Leave-----------------------------------------------
  var leave = require('../api/leave.js');
  app.post('/applyleave',leave.leaveadd );
+ app.get('/getleave',leave.getAll);
 
 
 

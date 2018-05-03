@@ -67,7 +67,7 @@
 				</ul>
 
       </div>
-      <div class="knockout">News Data</div>
+      <div class="knockout">Leave Data</div>
 <br/>
 
 </html>
@@ -164,15 +164,11 @@ $(document).ready(function(){
 <table id="newstable" class="responstable css-serial" style="width:100%;  margin-right:50px;" >
  
     <tr  id = "rowid" >
-    <th  width="2%" name="s.no" id="s.no">Sr. No</th>
-    <th  width="5%" name="title" id="title">Title</th>
-    <th width="5%" name="subtitle" id="subtitle">SubTitle</th>
-    <th width="5%" name="description" id="description">Description</th>
-    <th width="5%" name="date" id="date">Date</th>
-    <th width="5%" name="imageurl" id="imageurl">Image Url</th>
+   <th  width="2%" name="s.no" id="s.no">Sr. No</th>
+    <th  width="15%" name="lapp" id="lapp">Leave Application</th>
     
-    <th width="5%">Action Delete</th>
-    <th width="5%">Action Update</th>
+    <th width="5%">Not Accepted</th>
+    <th width="5%">Accepted</th>
   </tr>
 
 
@@ -208,9 +204,9 @@ $(document).ready(function(){
 </div>  
 
 
- <!-- Script for Paging -->
+<!-- Script for Paging -->
 
- <script>
+<script>
     function pagination(){
         var req_num_row=10;
         var $tr=jQuery('tbody th');
@@ -266,7 +262,7 @@ $(document).ready(function(){
   
     event.preventDefault();
   
-    var dmJSON = "https://employeemanagementsystem.herokuapp.com/viewnews";
+    var dmJSON = "https://employeemanagementsystem.herokuapp.com/viewevent";
     var employee_id = $(this).attr('rel'); 
     data = {employee_id:employee_id}
   
@@ -280,7 +276,6 @@ $(document).ready(function(){
          $('#field2').val(f.subtitle)
          $('#field3').val(f.description)
          $('#field4').val(f.date)
-      
          $('#employee_id').val(f._id);
       
   
@@ -303,10 +298,10 @@ $(document).ready(function(){
        <div class="modal-content">  
             <div class="modal-header">  
                  <button type="button" class="close" data-dismiss="modal">&times;</button>  
-               <center> <h4 class="modal-title">News Data</h4>  </center> 
+               <center> <h4 class="modal-title">Leave Data</h4>  </center> 
             </div>  
             <div class="modal-body">  
-                 <form method="POST">  
+                 <form  id="editForm"  method="POST" class="editForm">  
 
                     <div class="modal-header">  
                         <center><h4 class="modal-title">News</h4> </center> 
@@ -328,54 +323,52 @@ $(document).ready(function(){
                       <label>Date</label>  
                       <input type="text" name="field4" id="field4" class="form-control" />  
                       <br />  
-
-                
+                     
+                 
 
                       <input type="hidden" name="employee_id" id="employee_id" />  
-                      <button id="button_1" value="val_1" name="but1">Update</button>
+                     <!-- <input type="submit" name="insert" id="'+this._id+''" value="Update" class="editForm btn btn-success" />  -->
+                     <button id="button_1" value="val_1" name="but1">Update</button>
                  </form>  
             </div>  
             <div class="modal-footer">  
-                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
+                 <button type="button" class="btn btn-default " data-dismiss="modal">Close</button>  
             </div>  
        </div>  
   </div>  
 </div> 
 
 
-
 <script>
-    $(document).ready(function() {
-      $("#button_1").click(function(e) {
-    e.preventDefault();
-    var title = $("#field1").val();
-    var subtitle = $("#field2").val();
-    var description = $("#field3").val();
-    var date = $("#field4").val();
-    var id = $("#employee_id").val();
-    
-    console.log(title);
-    var dataForm = 'title=' + title + '&subtitle=' + subtitle + '&description=' +description+ '&date=' + date +  '&id=' + id;
-    
-    $.ajax({
-        type: 'POST',
-        url: '/updatenews/'+id,
-        data: dataForm,
-        success: function(html){
-            if(html == "success"){
-               // $('#emptable').dataTable().reload();
-                $('#add_data_Modal1').modal('hide');
-                $('#add_data_Modal1').modal('toggle');
-                res.render('viewevents');
-            }
+$(document).ready(function() {
+  $("#button_1").click(function(e) {
+e.preventDefault();
+var title = $("#field1").val();
+var subtitle = $("#field2").val();
+var description = $("#field3").val();
+var date = $("#field4").val();
+var id = $("#employee_id").val();
+
+console.log(title);
+var dataForm = 'title=' + title + '&subtitle=' + subtitle + '&description=' +description+ '&date=' + date +  '&id=' + id;
+
+$.ajax({
+    type: 'POST',
+    url: '/edit/'+id,
+    data: dataForm,
+    success: function(html){
+        if(html == "success"){
+           // $('#emptable').dataTable().reload();
+            $('#add_data_Modal1').modal('hide');
+            $('#add_data_Modal1').modal('toggle');
+            res.render('viewevents');
         }
-        });
-    
+    }
     });
-    });
-    </script>
 
-
+});
+});
+</script>
 
 
 
@@ -390,13 +383,13 @@ function populateTable(){
         console.log('Unable to put data'); 
 
        
-                $.getJSON("https://employeemanagementsystem.herokuapp.com/viewnews", function(data){
+                $.getJSON("https://employeemanagementsystem.herokuapp.com/getleave", function(data){
                     console.log(data);
            
                   $.each(data, function(i, field){
                    
-                       $('#newstable').append('<tr  ><td></td><td>'+field.title+'</td><td>'+field.subtitle+
-                        '</td><td>'+field.description+'</td><td>'+field.date+'</td><td>'+field.imgurl+'</td><td><a href="#" id="btn1" class="deleteEmployee btn btn-danger "   rel="' + this._id + '" >delete</a></td> <td><a href="#" id="btn1" class="updatenews btn btn-info "   rel="' + this._id + '" >Edit</a></td> </tr>' 
+                       $('#newstable').append('<tr  ><td></td><td>'+field.leave+
+                        '</td><td><a href="#" id="btn1" class="btn btn-danger "   rel="' + this._id + '" >Rejected</a></td> <td><a href="#" id="btn1" class=" btn btn-info "   rel="' + this._id + '" >Accepted</a></td> </tr>' 
             
                     );
 
@@ -436,7 +429,7 @@ $('#newstable tbody').on('click', 'td a.deleteEmployee', function deleteEmployee
         $.ajax({
             method:'DELETE',
             type: 'DELETE',
-            url: '/deletenews/'  + $(this).attr('rel'),
+            url: '/eventdelete/'  + $(this).attr('rel'),
 
         }).done(function( response) {
           

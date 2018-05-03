@@ -25,9 +25,9 @@ newleave.save((err, leave)=>{
   }
 
   exports.getAll = function (req, res) {
-    Event
+    leave
         .find({})
-        .exec(function (error, events) {
+        .exec(function (error, leave) {
             if (error) {
                 res
                     .status(500)
@@ -35,7 +35,7 @@ newleave.save((err, leave)=>{
             } else {
                 res
                     .status(200)
-                    .send(events);
+                    .send(leave);
             }
         })
 }
