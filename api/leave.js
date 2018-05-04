@@ -7,7 +7,16 @@ var app = exprss();
 
 exports.leaveadd=function(req,res){
   let newleave = new leave({
-     leave :req.body.leave
+     //leave :req.body.leave
+     name:req.body.name,
+     designation:req.body.designation,
+     leavetype:req.body.leavetype,
+     fromdate:req.body.fromdate,
+     todate:req.body.todate,
+     nodays:req.body.nodays,
+     reason:req.body.reason
+
+
  
 });
 newleave.save((err, leave)=>{
