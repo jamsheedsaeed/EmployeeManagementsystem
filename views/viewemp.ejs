@@ -160,10 +160,10 @@ $(document).ready(function(){
           </div>
        </div> 
     
-<table id="emptable" class="responstable css-serial" style="width:100%;  margin-right:50px;" >
+<table id="emptable" class="responstable " style="width:100%;  margin-right:50px;" >
 
     <tr  id = "rowid" >
-    <th  width="2%" name="s.no" id="s.no">Sr. No</th>
+   
     <th  width="5%" name="empname" id="empname">Employee Name</th>
     <th width="5%" name="emptitle" id="emptitle">Title</th>
     <th width="5%" name="empphone" id="empphone">Phone</th>
@@ -550,7 +550,7 @@ function populateTable(){
            
                   $.each(data, function(i, field){
                    
-                       $('#emptable').append('<tr  ><td></td><td>'+field.employeename+'</td><td>'+field.title+
+                       $('#emptable').append('<tr  ><td>'+field.employeename+'</td><td>'+field.title+
                         '</td><td>'+field.phone+'</td><td>'+field.salary+'</td><td>'+field.department+'</td><td>'+field.payscale+'</td><td><a href="#" id="btn1" class="editcustomer btn btn-info "   rel="' + this._id + '" >View</a></td> <td><a href="#" id="btn1" class="deleteEmployee btn btn-danger "   rel="' + this._id + '" >delete</a></td> <td><a href="#" id="btn1" class="updatecustomer btn btn-info "   rel="' + this._id + '" >Edit</a></td> </tr>' 
             
                     );
@@ -670,8 +670,8 @@ $(function() {
       filter = input.value.toUpperCase();
       table = document.getElementById("emptable");
       tr = table.getElementsByTagName("tr");
-      for (i = 1; i < tr.length; i++) {
-        td = tr[i].getElementsByTagName("td")[i];
+      for (i = 0; i < tr.length; i++) {
+        td = tr[i].getElementsByTagName("td")[0];
         if (td) {
           if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
             tr[i].style.display = "";
@@ -682,6 +682,8 @@ $(function() {
       }
     }
     </script>
+
+
 
 
   <script>  

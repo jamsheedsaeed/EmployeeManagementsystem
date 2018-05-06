@@ -50,7 +50,7 @@ newleave.save((err, leave)=>{
 }
 
 exports.delete = function(req, res, next){
-    Event.remove({_id: req.params.id},function(err, result){
+    leave.remove({_id: req.params.id},function(err, result){
         if(err){
             res.json(err);
         }

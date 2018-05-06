@@ -161,10 +161,9 @@ $(document).ready(function(){
           </div>
        </div> 
     
-<table id="newstable" class="responstable css-serial" style="width:100%;  margin-right:50px;" >
+<table id="eventtable" class="responstable " style="width:100%;  margin-right:50px;" >
  
     <tr  id = "rowid" >
-   <th  width="2%" name="s.no" id="s.no">Sr. No</th>
     <th  width="5%" name="title" id="title">Title</th>
     <th width="5%" name="subtitle" id="subtitle">SubTitle</th>
     <th width="5%" name="description" id="description">Description</th>
@@ -262,7 +261,7 @@ $(document).ready(function(){
 <script>
 
      
-  $('#newstable tbody').on('click','td a.updatenews', function updatecustomer(event) {
+  $('#eventtable tbody').on('click','td a.updatenews', function updatecustomer(event) {
   
     event.preventDefault();
   
@@ -392,7 +391,7 @@ function populateTable(){
            
                   $.each(data, function(i, field){
                    
-                       $('#newstable').append('<tr  ><td></td><td>'+field.title+'</td><td>'+field.subtitle+
+                       $('#eventtable').append('<tr  ><td>'+field.title+'</td><td>'+field.subtitle+
                         '</td><td>'+field.description+'</td><td>'+field.date+'</td><td>'+field.imgurl+'</td><td><a href="#" id="btn1" class="deleteEmployee btn btn-danger "   rel="' + this._id + '" >delete</a></td> <td><a href="#" id="btn1" class="updatenews btn btn-info "   rel="' + this._id + '" >Edit</a></td> </tr>' 
             
                     );
@@ -421,7 +420,7 @@ jsreport.render($("#employees"), request);
 // here ”placeholder” is div tag name in html page  
 }  
   
-$('#newstable tbody').on('click', 'td a.deleteEmployee', function deleteEmployee(event){
+$('#eventtable tbody').on('click', 'td a.deleteEmployee', function deleteEmployee(event){
 
 
     event.preventDefault();
@@ -471,7 +470,7 @@ $('#newstable tbody').on('click', 'td a.deleteEmployee', function deleteEmployee
       var input, filter, table, tr, td, i;
       input = document.getElementById("myInput");
       filter = input.value.toUpperCase();
-      table = document.getElementById("emptable");
+      table = document.getElementById("eventtable");
       tr = table.getElementsByTagName("tr");
       for (i = 0; i < tr.length; i++) {
         td = tr[i].getElementsByTagName("td")[0];

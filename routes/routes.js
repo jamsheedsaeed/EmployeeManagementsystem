@@ -214,6 +214,7 @@ var sessionChecker = (req, res, next) => {
  var leave = require('../api/leave.js');
  app.post('/applyleave',leave.leaveadd );
  app.get('/getleave',leave.getAll);
+ app.delete('/deleteleave/:id', leave.delete);
 
 
 
