@@ -168,7 +168,7 @@ $(document).ready(function(){
     <th width="5%" name="subtitle" id="subtitle">SubTitle</th>
     <th width="5%" name="description" id="description">Description</th>
     <th width="5%" name="date" id="date">Date</th>
-    <th width="5%" name="imageurl" id="imageurl">Image Url</th>
+ 
     
     <th width="5%">Action Delete</th>
     <th width="5%">Action Update</th>
@@ -392,7 +392,7 @@ function populateTable(){
                   $.each(data, function(i, field){
                    
                        $('#eventtable').append('<tr  ><td>'+field.title+'</td><td>'+field.subtitle+
-                        '</td><td>'+field.description+'</td><td>'+field.date+'</td><td>'+field.imgurl+'</td><td><a href="#" id="btn1" class="deleteEmployee btn btn-danger "   rel="' + this._id + '" >delete</a></td> <td><a href="#" id="btn1" class="updatenews btn btn-info "   rel="' + this._id + '" >Edit</a></td> </tr>' 
+                        '</td><td>'+field.description+'</td><td>'+field.date+'</td><td><a href="#" id="btn1" class="deleteEmployee btn btn-danger "   rel="' + this._id + '" >delete</a></td> <td><a href="#" id="btn1" class="updatenews btn btn-info "   rel="' + this._id + '" >Edit</a></td> </tr>' 
             
                     );
 
