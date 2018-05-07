@@ -159,17 +159,17 @@
               <h2 style="color:white;">Employee Management System</h2>
               <br><br><br>
               <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Log In</label>
-              <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+              <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab"></label>
               <div class="login-form">
                   <div class="sign-in-htm">
                       <div class="group">
                   <form  action="/login" method="POST">
                           <label for="user" class="label">Username</label>
-                          <input id="user" name="username" type="text" class="input">
+                          <input id="user" name="username" type="text" class="input" required>
                       </div>
                       <div class="group">
                           <label for="pass" class="label">Password</label>
-                          <input id="pass" name="password" type="password" class="input" data-type="password">
+                          <input id="pass" name="password" type="password" class="input" data-type="password" required>
                       </div>
                     
                       <div class="group">

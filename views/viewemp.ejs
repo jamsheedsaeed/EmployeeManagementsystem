@@ -208,9 +208,7 @@ $(document).ready(function(){
             <div class="modal-body">  
                  <form method="POST">  
 
-                    <div class="modal-header">  
-                        <center><h4 class="modal-title">Personal Details</h4> </center> 
-                         </div>
+              
                       <label>Employee Name</label>  
                       <input  name="field1" id="field1" class="form-control" />  
                       <br />  
@@ -231,6 +229,24 @@ $(document).ready(function(){
                       <input type="text" name="field5" id="field5" class="form-control"  />  
                       <br />
 
+                      <label>Payscale</label>  
+                      <input type="text" name="field6" id="field6" class="form-control"  />  
+                      <br />
+
+                      <label>Salary</label>  
+                      <input type="text" name="field7" id="field7" class="form-control"  />  
+                      <br />
+
+                      <label>Designation</label>  
+                      <input type="text" name="field8" id="field8" class="form-control"  />  
+                      <br />
+
+                      <label>Address</label>  
+                      <input type="text" name="field9" id="field9" class="form-control"  />  
+                      <br />
+
+
+
 
                       <input type="hidden" name="employee_id" id="employee_id" />  
                       <button id="button_1" value="val_1" name="but1">Update</button>
@@ -243,6 +259,7 @@ $(document).ready(function(){
   </div>  
 </div> 
 
+
 <script>
     $(document).ready(function() {
       $("#button_1").click(function(e) {
@@ -252,10 +269,18 @@ $(document).ready(function(){
     var Email = $("#field3").val();
     var phone = $("#field4").val();
     var gender = $("#field5").val();
+
+
+    var payscale = $("#field6").val();
+    var salary= $("#field7").val();
+    var title= $("#field8").val();
+    var address= $("#field9").val();
+
+
     var id = $("#employee_id").val();
     
     console.log(title);
-    var dataForm = 'employeename=' + employeename + '&fname=' + fname + '&Email=' +Email+ '&phone=' + phone + '&gender=' + gender +   '&id=' + id;
+    var dataForm = 'employeename=' + employeename + '&fname=' + fname + '&Email=' +Email+ '&phone=' + phone + '&gender=' + gender + '&payscale=' + payscale+ '&salary=' + salary+ '&title=' + title+ '&address=' + address+  '&id=' + id;
     
     $.ajax({
         type: 'POST',
@@ -307,6 +332,14 @@ $(document).ready(function(){
          $('#field3').val(f.Email)
          $('#field4').val(f.phone)
          $('#field5').val(f.gender)
+
+         $('#field6').val(f.payscale)
+         $('#field7').val(f.salary)
+         $('#field8').val(f.title)
+         $('#field9').val(f.address)
+
+
+
          $('#employee_id').val(f._id);
       
   

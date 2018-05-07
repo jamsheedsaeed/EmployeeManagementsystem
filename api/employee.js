@@ -83,6 +83,11 @@ exports.editemployee = function(req,res){
             Employee.Email = req.body.Email;
             Employee.phone = req.body.phone;
             Employee.gender = req.body.gender;
+
+            Employee.payscale = req.body.payscale;
+            Employee.salary = req.body.salary;
+            Employee.title = req.body.title;
+            Employee.address = req.body.address;
            
 
             Employee.save(function(err,result){
@@ -90,9 +95,9 @@ exports.editemployee = function(req,res){
                     res.status('500').send({message:'error found'})
                 }
                 else{
-          
-                    console.log(result);
                     res.render("viewemp");
+                    console.log(result);
+                   
                 }
             });
         }

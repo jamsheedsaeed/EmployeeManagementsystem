@@ -220,8 +220,19 @@ body {
     </li>
     </ul>
     </form>-->
-
     
+    <script>
+    function checkDate() {
+        var selectedText = document.getElementById('datepicker').value;
+        var selectedDate = new Date(selectedText);
+        var now = new Date();
+        if (selectedDate < now) {
+         alert("You Entered An Invalid Date. Date must be in the future");
+        
+       
+        }
+      }
+    </script>
     <form class="form-style-9" action="/eventadd" method="POST" enctype="multipart/form-data"  >
         <center>
               
@@ -280,7 +291,8 @@ body {
                                                      <div class="input-group-addon">
                                                     <span class="glyphicon glyphicon-calendar"></span> 
                                                      </div>
-                                                     <input type="date" name="myDate" class="form-control is-valid" id="validationServer03" placeholder="Date" required/>
+                                                     <input type="date" name="myDate"   onchange="checkDate()" class="form-control is-valid datepicker-input" id="datepicker"  data-date-format="yyyy-mm-dd" placeholder="Date" required/>
+
                                                     </div>
                                                    </div>
 
